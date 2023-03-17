@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Workspace\\Web 2\\HandmadeShop\\HandmadeShop\\HandmadeShop.csproj": {}
+    "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\HandmadeShop.csproj": {}
   },
   "projects": {
-    "C:\\Workspace\\Web 2\\HandmadeShop\\HandmadeShop\\HandmadeShop.csproj": {
+    "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\HandmadeShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Workspace\\Web 2\\HandmadeShop\\HandmadeShop\\HandmadeShop.csproj",
+        "projectUniqueName": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\HandmadeShop.csproj",
         "projectName": "HandmadeShop",
-        "projectPath": "C:\\Workspace\\Web 2\\HandmadeShop\\HandmadeShop\\HandmadeShop.csproj",
+        "projectPath": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\HandmadeShop.csproj",
         "packagesPath": "C:\\Users\\upxol\\.nuget\\packages\\",
-        "outputPath": "C:\\Workspace\\Web 2\\HandmadeShop\\HandmadeShop\\obj\\",
+        "outputPath": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
@@ -45,6 +45,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.3, )"
@@ -54,6 +58,8 @@
               "version": "[7.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.3, )"
             }
