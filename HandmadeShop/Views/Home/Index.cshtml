@@ -2,47 +2,45 @@
 @model ListViewModel
 
 
-<div class="intro11-slider-wrap section">
-    <div class="intro11-slider swiper-container">
-        <div class="swiper-wrapper">
-            <div class="intro11-section swiper-slide slide-1 slide-bg-1 bg-position">
-                <!-- Intro Content Start -->
-                <div class="intro11-content text-left">
-                    <h3 class="title-slider text-uppercase">Top Trend</h3>
-                    <h2 class="title">2022 Flower Trend</h2>
-                    <p class="desc-content">Lorem ipsum dolor sit amet, pri autem nemore bonorum te. Autem fierent ullamcorper ius no, nec ea quodsi invenire. </p>
-                    <a href="product-details.html" class="btn flosun-button secondary-btn theme-color  rounded-0">Shop Now</a>
+<div class="intro11-slider-wrap section-2">
+        <div class="intro11-slider swiper-container">
+            <div class="swiper-wrapper">
+                <div class="intro11-section swiper-slide slide-5 slide-bg-1 bg-position">
+                    <!-- Intro Content Start -->
+                    <div class="intro11-content-2 text-center">
+                        <h1 class="different-title">Quality</h1>
+                        <h2 class="title text-white">The Gift for everyone</h2>
+                        <a href="product-details.html" class="btn flosun-button  secondary-btn theme-color rounded-0">Shop Collection</a>
+                    </div>
+                    <!-- Intro Content End -->
                 </div>
-                <!-- Intro Content End -->
-            </div>
-            <div class="intro11-section swiper-slide slide-2 slide-bg-1 bg-position">
-                <!-- Intro Content Start -->
-                <div class="intro11-content text-left">
-                    <h3 class="title-slider black-slider-title text-uppercase">Collection</h3>
-                    <h2 class="title">Flowers and Candle <br> Birthday Gift</h2>
-                    <p class="desc-content">Lorem ipsum dolor sit amet, pri autem nemore bonorum te. Autem fierent ullamcorper ius no, nec ea quodsi invenire. </p>
-                    <a href="product-details.html" class="btn flosun-button secondary-btn rounded-0">Shop Now</a>
+                <div class="intro11-section swiper-slide slide-6 slide-bg-1 bg-position">
+                    <!-- Intro Content Start -->
+                    <div class="intro11-content-2 text-center">
+                        <h1 class="different-title">Welcome</h1>
+                        <h2 class="title">Handmade shop</h2>
+                        <a href="product-details.html" class="btn flosun-button  secondary-btn theme-color rounded-0">Shop Collection</a>
+                    </div>
+                    <!-- Intro Content End -->
                 </div>
-                <!-- Intro Content End -->
             </div>
+            <!-- Slider Navigation -->
+            <div class="home1-slider-prev swiper-button-prev main-slider-nav"><i class="lnr lnr-arrow-left"></i></div>
+            <div class="home1-slider-next swiper-button-next main-slider-nav"><i class="lnr lnr-arrow-right"></i></div>
+            <!-- Slider pagination -->
+            <div class="swiper-pagination"></div>
         </div>
-        <!-- Slider Navigation -->
-        <div class="home1-slider-prev swiper-button-prev main-slider-nav"><i class="lnr lnr-arrow-left"></i></div>
-        <div class="home1-slider-next swiper-button-next main-slider-nav"><i class="lnr lnr-arrow-right"></i></div>
-        <!-- Slider pagination -->
-        <div class="swiper-pagination"></div>
     </div>
-</div>
 <!-- Slider/Intro Section End -->
 <!--Categories Area Start-->
-<div class="categories-area pt-40">
-    <div class="container-fluid">
+<div class="categories-area mt-no-text">
+    <div class="container custom-area">
         <div class="row">
             <div class="cat-1 col-md-4 col-sm-12 col-custom">
                 <div class="categories-img mb-30">
-                    <a href="#"><img src="assets/images/category/home1-category-1.jpg" alt=""></a>
+                    <a href="#"><img src="~/assets/images/category/home1-category-1.jpg" alt=""></a>
                     <div class="categories-content">
-                        <h3>Potted Plant</h3>
+                        <h3>Jewelry</h3>
                         <h4>18 items</h4>
                     </div>
                 </div>
@@ -51,27 +49,27 @@
                 <div class="row">
                     <div class="cat-3 col-md-7 col-custom">
                         <div class="categories-img mb-30">
-                            <a href="#"><img src="assets/images/category/home1-category-2.jpg" alt=""></a>
+                            <a href="#"><img src="~/assets/images/category/home1-category-2.jpg" alt=""></a>
                             <div class="categories-content">
-                                <h3>Potted Plant</h3>
+                                <h3>Clothes</h3>
                                 <h4>18 items</h4>
                             </div>
                         </div>
                     </div>
                     <div class="cat-4 col-md-5 col-custom">
                         <div class="categories-img mb-30">
-                            <a href="#"><img src="assets/images/category/home1-category-3.jpg" alt=""></a>
+                            <a href="#"><img src="~/assets/images/category/home1-category-3.jpg" alt=""></a>
                             <div class="categories-content">
-                                <h3>Potted Plant</h3>
+                                <h3>Decor</h3>
                                 <h4>18 items</h4>
                             </div>
                         </div>
                     </div>
                     <div class="cat-5 col-md-4 col-custom">
                         <div class="categories-img mb-30">
-                            <a href="#"><img src="assets/images/category/home1-category-4.jpg" alt=""></a>
+                            <a href="#"><img src="~/assets/images/category/home1-category-4.jpg" alt=""></a>
                             <div class="categories-content">
-                                <h3>Potted Plant</h3>
+                                <h3>Toys</h3>
                                 <h4>18 items</h4>
                             </div>
                         </div>
@@ -80,7 +78,7 @@
                         <div class="categories-img mb-30">
                             <a href="#"><img src="assets/images/category/home1-category-5.jpg" alt=""></a>
                             <div class="categories-content">
-                                <h3>Potted Plant</h3>
+                                <h3>Other</h3>
                                 <h4>18 items</h4>
                             </div>
                         </div>
@@ -163,8 +161,8 @@
                                                 var image1 = Model.ProductImages.FirstOrDefault(p => p.ProductID == item.ID);
                                                 var image2 = Model.ProductImages.FirstOrDefault(p => p.ProductID == item.ID && p.ID != image1.ID);
                                             }
-                                            <img src="~/Images/@image1.ImagePath" style="height: 220px" alt="" class="product-image-1 w-100">
-                                            <img src="~/Images/@image2.ImagePath" style="height: 220px" alt="" class="product-image-2 position-absolute w-100">
+                                            <img src="~/Images/@image1.ImagePath" style="height: 230px" alt="" class="product-image-1 w-100">
+                                            <img src="~/Images/@image2.ImagePath" style="height: 230px" alt="" class="product-image-2 position-absolute w-100">
 
                                         </a>
                                         <div class="add-action d-flex flex-column position-absolute">

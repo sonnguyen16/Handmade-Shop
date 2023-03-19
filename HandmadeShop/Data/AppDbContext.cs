@@ -19,7 +19,7 @@ namespace HandmadeShop.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(x => new { x.UserId });
-            modelBuilder.Entity<IdentityUserRole<string>>().HasKey(x => new { x.RoleId });
+            modelBuilder.Entity<IdentityUserRole<string>>().HasKey(x => new { x.RoleId, x.UserId });
             modelBuilder.Entity<IdentityUserToken<string>>().HasKey(x => new { x.UserId, x.Value });
         }
 

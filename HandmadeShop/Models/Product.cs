@@ -15,5 +15,6 @@ namespace HandmadeShop.Models
         [ForeignKey("CategoryID")]
         public Category category { get; set; }
         public string Material { get; set; }
+        public string Status { get; set; }
     }
 }

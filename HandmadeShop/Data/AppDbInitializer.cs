@@ -164,7 +164,7 @@ namespace HandmadeShop.Data
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
                 if (!await roleManager.RoleExistsAsync(UserRoles.User))
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
-
+               
                 //Users
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
                 string adminUserEmail = "admin@sqlshop.com";
@@ -174,16 +174,18 @@ namespace HandmadeShop.Data
                 {
                     var newAdminUser = new ApplicationUser()
                     {
-                        FirstName = "Son",
-                        LastName = "Nguyen",
+                        FullName = "Son Nguyen",
                         UserName = "admin",
                         Email = adminUserEmail,
-                        EmailConfirmed = true
+                        EmailConfirmed = true,
+                        PhoneNumber = "84817702334"
                     };
-                    await userManager.CreateAsync(newAdminUser, "1");
-                    await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
-                }
+                    var result = await userManager.CreateAsync(newAdminUser, "Sonbeo22@123?");
 
+                    if (result.Succeeded)
+                        await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+                }
+               
 
                 string appUserEmail = "lunami@sqlshop.com";
                
@@ -193,30 +195,16 @@ namespace HandmadeShop.Data
                 {
                     var newAppUser = new ApplicationUser()
                     {
-                        FirstName = "Quynh",
-                        LastName = "Nhu",
+                        FullName = "Ngoc Quynh",
                         UserName = "lunami",
                         Email = appUserEmail,
-                        EmailConfirmed = true
+                        EmailConfirmed = true,
+                        PhoneNumber= "84965736750",
                     };
-                    await userManager.CreateAsync(newAppUser, "1");
-                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
-                }
-                string appUserEmail1 = "troclod@sqlshop.com";
+                    var result = await userManager.CreateAsync(newAppUser, "Sonbeo22@123?");
 
-                var appUser1 = await userManager.FindByEmailAsync(appUserEmail);
-                if (appUser1 == null)
-                {
-                    var newAppUser = new ApplicationUser()
-                    {
-                        FirstName = "Long",
-                        LastName = "Trung",
-                        UserName = "Troc",
-                        Email = appUserEmail1,
-                        EmailConfirmed = true
-                    };
-                    await userManager.CreateAsync(newAppUser, "1");
-                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
+                    if(result.Succeeded) 
+                        await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }
         }
