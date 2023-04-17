@@ -1,0 +1,52 @@
+﻿@using HandmadeShop.Models.ViewModel;
+@model ListViewModel
+
+
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Shopping Cart</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li>Shopping Cart</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+<!-- cart main wrapper start -->
+<div class="cart-main-wrapper mt-no-text mb-5">
+    @await Html.PartialAsync("Cart.cshtml", Model)
+</div>
+    <script>
+    function removeFromCart(productId) {
+        $.ajax({
+            url: '/Cart/RemoveFromCart?id=' + productId,
+            method: 'POST',
+            success: function (updatedCartHtml) {
+                // Replace the current cart HTML with the updated cart HTML
+                $('.cart-main-wrapper').html(updatedCartHtml);
+                toastr.success('Đã xoá khỏi giỏ hàng');
+                console.log(updatedCartHtml);
+                var spanElement = $('.cart-item_count');
+                var currentValue = parseInt(spanElement.text(), 10);
+                var newValue = currentValue - 1;
+                spanElement.text(newValue);
+
+            },
+            error: function (xhr, status, error) {
+                console.error('Error adding product to cart:', error);
+            }
+        });
+    }
+
+    function addToCart2(productId) {
+       
+    }
+
+   
+</script>

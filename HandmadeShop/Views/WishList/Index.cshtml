@@ -1,0 +1,61 @@
+﻿@using HandmadeShop.Models.ViewModel;
+@model WishListViewModel
+    <!-- Breadcrumb Area Start Here -->
+    <div class="breadcrumbs-area position-relative">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="breadcrumb-content position-relative section-content">
+                        <h3 class="title-3">Wishlist</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li>Wishlist</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Area End Here -->
+    <!-- Wishlist main wrapper start -->
+    <div class="wishlist-main-wrapper mt-no-text mb-5">
+        <div class="container container-default-2 custom-area">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Wishlist Table Area -->
+                    <div class="wishlist-table table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pro-thumbnail">Image</th>
+                                    <th class="pro-title">Product</th>
+                                    <th class="pro-price">Price</th>
+                                    <th class="pro-cart">Add to Cart</th>
+                                    <th class="pro-remove">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @if(@Model.wishList != null){
+                                @foreach (var wish in Model.wishList)
+                                    {
+                                        <tr>
+                                        <td class="pro-thumbnail"><a href="#"><img  src="~/Images/@Model.productImages.FirstOrDefault(i => i.ProductID == wish.ProductID).ImagePath" alt="Product" /></a></td>
+                                            <td class="pro-title"><a href="#">@Model.products.FirstOrDefault(p => p.ID == wish.ProductID).Name</a></td>
+                                            <td class="pro-price"><span>@String.Format("{0:0,0 vnđ}", @Model.products.FirstOrDefault(p => p.ID == wish.ProductID).Price)</span></td>
+                                            <td class="pro-cart"><a href="cart.html" class="btn product-cart button-icon flosun-button dark-btn">Add to Cart</a></td>
+                                            <td class="pro-remove"><a asp-controller="wishlist" asp-action="remove" asp-route-id="@wish.ID"><i class="lnr lnr-trash"></i></a></td>
+                                        </tr>
+                                    }
+
+                                }else{
+                                    <h2>Bạn chưa có sản phẩm yêu thích</h2>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Wishlist main wrapper end -->
+   

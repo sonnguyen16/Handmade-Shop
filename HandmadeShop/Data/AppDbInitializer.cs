@@ -2,6 +2,7 @@
 using HandmadeShop.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -64,7 +65,7 @@ namespace HandmadeShop.Data
                             Price = 100000,
                             Seller = "Lunami",
                             Description = "Đây là mô tả của Handmade 2",
-                            CategoryID = 2,
+                            CategoryID = 1,
                             Material = "Kim loại, đèn led"
                         }, new Product()
                         {
@@ -72,7 +73,7 @@ namespace HandmadeShop.Data
                             Price = 30000,
                             Seller = "Lunami",
                             Description = "Đây là mô tả của Handmade 3",
-                            CategoryID = 2,
+                            CategoryID = 4,
                             Material = "Kim loại"
                         }, new Product()
                         {
@@ -80,7 +81,7 @@ namespace HandmadeShop.Data
                             Price = 60000,
                             Seller = "Lunami",
                             Description = "Đây là mô tả của Handmade 4",
-                            CategoryID = 2,
+                            CategoryID = 3,
                             Material = "Vải"
                         }, 
 
@@ -108,6 +109,11 @@ namespace HandmadeShop.Data
                         },
                           new ProductImage()
                         {
+                            ProductID = 1,
+                            ImagePath = "handmade1-2.jpg"
+                        },
+                          new ProductImage()
+                        {
                             ProductID = 2,
                             ImagePath = "handmade2-1.jpg"
                         }, new ProductImage()
@@ -118,6 +124,10 @@ namespace HandmadeShop.Data
                         {
                             ProductID = 2,
                             ImagePath = "handmade2-3.jpg"
+                        }, new ProductImage()
+                        {
+                            ProductID = 2,
+                            ImagePath = "handmade2-2.jpg"
                         }, new ProductImage()
                         {
                             ProductID = 3,
@@ -132,6 +142,10 @@ namespace HandmadeShop.Data
                             ImagePath = "handmade3-3.jpg"
                         }, new ProductImage()
                         {
+                            ProductID = 3,
+                            ImagePath = "handmade3-2.jpg"
+                        }, new ProductImage()
+                        {
                             ProductID = 4,
                             ImagePath = "handmade4-1.jpg"
                         }, new ProductImage()
@@ -142,9 +156,20 @@ namespace HandmadeShop.Data
                         {
                             ProductID = 4,
                             ImagePath = "handmade4-3.jpg"
+                        },new ProductImage(){
+                            ProductID = 4,
+                            ImagePath = "handmade4-2.jpg"
                         },
 
                     });
+
+                    if (!context.WishLists.Any()) {
+                        context.WishLists.Add(new WishList()
+                        {
+                            ProductID = 1,
+                            AccountID = "1faf47ca-93a0-4504-a476-c98c25cf6d34"
+                        });
+                    }
                     context.SaveChanges();
                 }
            

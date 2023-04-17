@@ -433,8 +433,272 @@
       "PackagePath": "staticwebassets\\assets\\js\\vendor\\modernizr-3.7.1.min.js"
     },
     {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\bootstrap-5.3.0-alpha2-dist\\js\\bootstrap.min.js.map"
+    },
+    {
       "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\dataTables.responsive.min.js",
+      "PackagePath": "staticwebassets\\datatable\\dataTables.responsive.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\datatables.min.js",
+      "PackagePath": "staticwebassets\\datatable\\datatables.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\images\\sort_asc.png",
+      "PackagePath": "staticwebassets\\datatable\\images\\sort_asc.png"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\images\\sort_asc_disabled.png",
+      "PackagePath": "staticwebassets\\datatable\\images\\sort_asc_disabled.png"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\images\\sort_both.png",
+      "PackagePath": "staticwebassets\\datatable\\images\\sort_both.png"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\images\\sort_desc.png",
+      "PackagePath": "staticwebassets\\datatable\\images\\sort_desc.png"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\images\\sort_desc_disabled.png",
+      "PackagePath": "staticwebassets\\datatable\\images\\sort_desc_disabled.png"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\js\\buttons.bootstrap5.min.js",
+      "PackagePath": "staticwebassets\\datatable\\js\\buttons.bootstrap5.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\js\\buttons.colVis.min.js",
+      "PackagePath": "staticwebassets\\datatable\\js\\buttons.colVis.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\js\\buttons.html5.min.js",
+      "PackagePath": "staticwebassets\\datatable\\js\\buttons.html5.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\js\\buttons.print.min.js",
+      "PackagePath": "staticwebassets\\datatable\\js\\buttons.print.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\js\\dataTables.bootstrap.js",
+      "PackagePath": "staticwebassets\\datatable\\js\\dataTables.bootstrap.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\js\\dataTables.bootstrap.min.js",
+      "PackagePath": "staticwebassets\\datatable\\js\\dataTables.bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\js\\dataTables.bootstrap5.js",
+      "PackagePath": "staticwebassets\\datatable\\js\\dataTables.bootstrap5.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\js\\dataTables.bootstrap5.min.js",
+      "PackagePath": "staticwebassets\\datatable\\js\\dataTables.bootstrap5.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\js\\dataTables.buttons.min.js",
+      "PackagePath": "staticwebassets\\datatable\\js\\dataTables.buttons.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\js\\dataTables.rowGroup.min.js",
+      "PackagePath": "staticwebassets\\datatable\\js\\dataTables.rowGroup.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\js\\jquery.dataTables.min.js",
+      "PackagePath": "staticwebassets\\datatable\\js\\jquery.dataTables.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\js\\jszip.min.js",
+      "PackagePath": "staticwebassets\\datatable\\js\\jszip.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\pdfmake\\pdfmake.min.js",
+      "PackagePath": "staticwebassets\\datatable\\pdfmake\\pdfmake.min.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\pdfmake\\vfs_fonts.js",
+      "PackagePath": "staticwebassets\\datatable\\pdfmake\\vfs_fonts.js"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\datatable\\responsive.bootstrap5.min.js",
+      "PackagePath": "staticwebassets\\datatable\\responsive.bootstrap5.min.js"
     },
     {
       "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\favicon.ico",
@@ -671,6 +935,22 @@
     {
       "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\toastr\\toastr.css",
+      "PackagePath": "staticwebassets\\toastr\\toastr.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\toastr\\toastr.js.map",
+      "PackagePath": "staticwebassets\\toastr\\toastr.js.map"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\toastr\\toastr.min.css",
+      "PackagePath": "staticwebassets\\toastr\\toastr.min.css"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\toastr\\toastr.min.js",
+      "PackagePath": "staticwebassets\\toastr\\toastr.min.js"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.HandmadeShop.Microsoft.AspNetCore.StaticWebAssets.props",

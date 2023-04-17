@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using HandmadeShop.Models.ViewModel;
+@model ListViewModel
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -13,7 +16,7 @@
     <!-- CSS
     ============================================ -->
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="~/assets/css/vendor/bootstrap.min.css">
+    <link href="~/bootstrap-5.3.0-alpha2-dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="~/assets/css/vendor/font.awesome.min.css">
     <!-- Linear Icons CSS -->
@@ -29,6 +32,9 @@
     <!-- Magnific Popup -->
     <link rel="stylesheet" href="~/assets/css/plugins/magnific-popup.css">
 
+    <link href="~/toastr/toastr.min.css" rel="stylesheet" />
+
+
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="~/assets/css/style.css">
 
@@ -36,13 +42,13 @@
 <body>
     <header class="main-header-area">
         <!-- Main Header Area Start -->
-        <div class="main-header header-transparent header-sticky">
-            <div class="container-fluid">
+        <div class="main-header header-sticky">
+            <div class="container custom-area">
                 <div class="row align-items-center">
                     <div class="col-lg-2 col-xl-2 col-md-6 col-6 col-custom">
                         <div class="header-logo d-flex align-items-center">
                             <a href="index.html">
-                                <img class="img-full" src="assets/images/logo/logo.png" alt="Header Logo">
+                                <img class="img-full" src="~/assets/images/logo/logo.png" alt="Header Logo">
                             </a>
                         </div>
                     </div>
@@ -50,50 +56,41 @@
                         <nav class="main-nav d-none d-lg-flex">
                             <ul class="nav">
                                 <li>
-                                    <a asp-controller="Home" asp-action="Index" class="active" >
+                                    <a asp-controller="Home" asp-action="Index" class="active">
                                         <span class="menu-text"> Home</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Shop" asp-action="Index" >
+                                    <a asp-controller="Shop" asp-action="Index">
                                         <span class="menu-text">Shop</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="contact-us.html">
+                                    <a asp-controller="Home" asp-action="Livestream">
                                         <span class="menu-text">Livestream</span>
                                     </a>
                                 </li>
                                 <li>
-                                    @if (User.Identity.IsAuthenticated)
-                                    {
-                                        <a asp-action="Dashboard" asp-controller="Account">
-                                            <span class="menu-text"> Account</span>
-                                        </a>
-                                    }
-                                    else
-                                    {
-                                        <a asp-action="Login" asp-controller="Account">
-                                            <span class="menu-text"> Account</span>
-                                        </a>
-                                    }
+                                    <a asp-action="Dashboard" asp-controller="Account">
+                                        <span class="menu-text"> Account</span>
+                                    </a>
                                 </li>
                                 <li>
-                                    <a asp-action="aboutus">
+                                    <a asp-controller="Home" asp-action="aboutus">
                                         <span class="menu-text"> About Us</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-action="contactus">
+                                    <a asp-controller="Home" asp-action="contactus">
                                         <span class="menu-text">Contact Us</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-action="faq">
+                                    <a asp-controller="home" asp-action="faq">
                                         <span class="menu-text">FAQ</span>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </nav>
                     </div>
@@ -101,79 +98,20 @@
                         <div class="header-right-area main-nav">
                             <ul class="nav">
                                 <li class="minicart-wrap ">
-                                    @if (User.Identity.IsAuthenticated)
-                                    {
-                                        <a asp-controller="Home" asp-action="wishlist" >
-                                            <i class="fa fa-heart"></i>
-                                        </a>
-                                    }
-                                    else
-                                    {
-                                        <a asp-controller="account" asp-action="login" >
-                                            <i class="fa fa-heart"></i>
-                                        </a>
-                                    }
+                                    <a asp-action="Index" asp-controller="WishList">
+                                        <i class="fa fa-heart"></i>
+                                    </a>
                                 </li>
                                 <li class="minicart-wrap">
                                     <a href="#" class="minicart-btn toolbar-btn">
                                         <i class="fa fa-shopping-cart"></i>
-                                        <span class="cart-item_count">3</span>
+                                        <span class="cart-item_count">@Model.Cart.Items.Count()</span>
                                     </a>
                                     <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
-                                        <div class="single-cart-item">
-                                            <div class="cart-img">
-                                                <a href="cart.html"><img src="assets/images/cart/1.jpg" alt=""></a>
-                                            </div>
-                                            <div class="cart-text">
-                                                <h5 class="title"><a href="cart.html">Odio tortor consequat</a></h5>
-                                                <div class="cart-text-btn">
-                                                    <div class="cart-qty">
-                                                        <span>1×</span>
-                                                        <span class="cart-price">$98.00</span>
-                                                    </div>
-                                                    <button type="button"><i class="ion-trash-b"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-cart-item">
-                                            <div class="cart-img">
-                                                <a href="cart.html"><img src="assets/images/cart/2.jpg" alt=""></a>
-                                            </div>
-                                            <div class="cart-text">
-                                                <h5 class="title"><a href="cart.html">Integer eget augue</a></h5>
-                                                <div class="cart-text-btn">
-                                                    <div class="cart-qty">
-                                                        <span>1×</span>
-                                                        <span class="cart-price">$98.00</span>
-                                                    </div>
-                                                    <button type="button"><i class="ion-trash-b"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-cart-item">
-                                            <div class="cart-img">
-                                                <a href="cart.html"><img src="assets/images/cart/3.jpg" alt=""></a>
-                                            </div>
-                                            <div class="cart-text">
-                                                <h5 class="title"><a href="cart.html">Eleifend quam</a></h5>
-                                                <div class="cart-text-btn">
-                                                    <div class="cart-qty">
-                                                        <span>1×</span>
-                                                        <span class="cart-price">$98.00</span>
-                                                    </div>
-                                                    <button type="button"><i class="ion-trash-b"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="cart-price-total d-flex justify-content-between">
-                                            <h5>Total :</h5>
-                                            <h5>$166.00</h5>
-                                        </div>
-                                        <div class="cart-links d-flex justify-content-between">
-                                            <a class="btn product-cart button-icon flosun-button dark-btn" href="cart.html">View cart</a>
-                                            <a class="btn flosun-button secondary-btn rounded-0" href="checkout.html">Checkout</a>
-                                        </div>
+                                        @await Html.PartialAsync("/Views/Home/Cart.cshtml", Model)
                                     </div>
+                                    
+
                                 </li>
                                 <li class="sidemenu-wrap">
                                     <a href="#"><i class="fa fa-search"></i> </a>
@@ -196,7 +134,6 @@
                                         <i class="fa fa-bars"></i>
                                     </a>
                                 </li>
-                              
                             </ul>
                         </div>
                     </div>
@@ -223,74 +160,42 @@
                         <!-- mobile menu navigation start -->
                         <nav>
                             <ul class="mobile-menu">
-                                <li class="menu-item-has-children">
-                                    <a href="#">Home</a>
-                                    <ul class="dropdown">
-                                        <li><a href="index.html">Home Page 1</a></li>
-                                        <li><a href="index-2.html">Home Page 2</a></li>
-                                        <li><a href="index-3.html">Home Page 3</a></li>
-                                        <li><a href="index-4.html">Home Page 4</a></li>
-                                    </ul>
+                                <li>
+                                    <a asp-controller="Home" asp-action="Index" class="active">
+                                        <span class="menu-text"> Home</span>
+                                    </a>
                                 </li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Shop</a>
-                                    <ul class="megamenu dropdown">
-                                        <li class="mega-title has-children">
-                                            <a href="#">Shop Layouts</a>
-                                            <ul class="dropdown">
-                                                <li><a href="shop.html">Shop Left Sidebar</a></li>
-                                                <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                                <li><a href="shop-list-left.html">Shop List Left Sidebar</a></li>
-                                                <li><a href="shop-list-right.html">Shop List Right Sidebar</a></li>
-                                                <li><a href="shop-fullwidth.html">Shop Full Width</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="mega-title has-children">
-                                            <a href="#">Product Details</a>
-                                            <ul class="dropdown">
-                                                <li><a href="product-details.html">Single Product Details</a></li>
-                                                <li><a href="variable-product-details.html">Variable Product Details</a></li>
-                                                <li><a href="external-product-details.html">External Product Details</a></li>
-                                                <li><a href="gallery-product-details.html">Gallery Product Details</a></li>
-                                                <li><a href="countdown-product-details.html">Countdown Product Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="mega-title has-children">
-                                            <a href="#">Others</a>
-                                            <ul class="dropdown">
-                                                <li><a href="error404.html">Error 404</a></li>
-                                                <li><a href="compare.html">Compare Page</a></li>
-                                                <li><a href="cart.html">Cart Page</a></li>
-                                                <li><a href="checkout.html">Checkout Page</a></li>
-                                                <li><a href="wishlist.html">Wish List Page</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                <li>
+                                    <a asp-controller="Shop" asp-action="Index">
+                                        <span class="menu-text">Shop</span>
+                                    </a>
                                 </li>
-                                <li class="menu-item-has-children ">
-                                    <a href="#">Blog</a>
-                                    <ul class="dropdown">
-                                        <li><a href="blog.html">Blog Left Sidebar</a></li>
-                                        <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
-                                        <li><a href="blog-list-fullwidth.html">Blog List Fullwidth</a></li>
-                                        <li><a href="blog-grid.html">Blog Grid Page</a></li>
-                                        <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
-                                        <li><a href="blog-grid-fullwidth.html">Blog Grid Fullwidth</a></li>
-                                        <li><a href="blog-details-sidebar.html">Blog Details Sidebar Page</a></li>
-                                        <li><a href="blog-details-fullwidth.html">Blog Details Fullwidth Page</a></li>
-                                    </ul>
+                                <li>
+                                    <a asp-controller="Home" asp-action="Livestream">
+                                        <span class="menu-text">Livestream</span>
+                                    </a>
                                 </li>
-                                <li class="menu-item-has-children ">
-                                    <a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="frequently-questions.html">FAQ</a></li>
-                                        <li><a href="my-account.html">My Account</a></li>
-                                        <li><a href="login-register.html">login &amp; register</a></li>
-                                    </ul>
+                                <li>
+                                    <a asp-action="Dashboard" asp-controller="Account">
+                                        <span class="menu-text"> Account</span>
+                                    </a>
                                 </li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact-us.html">Contact</a></li>
-                            </ul>
+                                <li>
+                                    <a asp-controller="Home" asp-action="aboutus">
+                                        <span class="menu-text"> About Us</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="contactus">
+                                        <span class="menu-text">Contact Us</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-action="faq">
+                                        <span class="menu-text">FAQ</span>
+                                    </a>
+                                </li>
+                               </ul>
                         </nav>
                         <!-- mobile menu navigation end -->
                     </div>
@@ -431,7 +336,7 @@
                         <div class="single-footer-widget m-0">
                             <div class="footer-logo">
                                 <a href="index.html">
-                                    <img src="assets/images/logo/logo-footer.png" alt="Logo Image">
+                                    <img src="~/assets/images/logo/logo-footer.png" alt="Logo Image">
                                 </a>
                             </div>
                             <p class="desc-content">Lorem Khaled Ipsum is a major key to success. To be successful you’ve got to work hard you’ve got to make it.</p>
@@ -528,76 +433,7 @@
     <!--Footer Area End-->
 
     <!-- Modal -->
-    <div class="modal flosun-modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <button type="button" class="close close-button" data-bs-dismiss="modal" aria-label="Close">
-                    <span class="close-icon" aria-hidden="true">x</span>
-                </button>
-                <div class="modal-body">
-                    <div class="container-fluid custom-area">
-                        <div class="row">
-                            <div class="col-md-6 col-custom">
-                                <div class="modal-product-img">
-                                    <a class="w-100" href="#">
-                                        <img class="w-100" src="assets/images/product/large-size/1.jpg" alt="Product">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-custom">
-                                <div class="modal-product">
-                                    <div class="product-content">
-                                        <div class="product-title">
-                                            <h4 class="title">Product dummy name</h4>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">$80.00</span>
-                                            <span class="old-price"><del>$90.00</del></span>
-                                        </div>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <span>1 Review</span>
-                                        </div>
-                                        <p class="desc-content">we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame bel...</p>
-                                        <form class="d-flex flex-column w-100" action="#">
-                                            <div class="form-group">
-                                                <select class="form-control nice-select w-100">
-                                                    <option>S</option>
-                                                    <option>M</option>
-                                                    <option>L</option>
-                                                    <option>XL</option>
-                                                    <option>XXL</option>
-                                                </select>
-                                            </div>
-                                        </form>
-                                        <div class="quantity-with-btn">
-                                            <div class="quantity">
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="0" type="text">
-                                                    <div class="dec qtybutton">-</div>
-                                                    <div class="inc qtybutton">+</div>
-                                                    <div class="dec qtybutton"><i class="fa fa-minus"></i></div>
-                                                    <div class="inc qtybutton"><i class="fa fa-plus"></i></div>
-                                                </div>
-                                            </div>
-                                            <div class="add-to_btn">
-                                                <a class="btn product-cart button-icon flosun-button dark-btn" href="cart.html">Add to cart</a>
-                                                <a class="btn flosun-button secondary-btn rounded-0" href="wishlist.html">Add to wishlist</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <!-- Scroll to Top Start -->
     <a class="scroll-to-top" href="#">
@@ -615,7 +451,7 @@
     <!-- Modernizer JS -->
     <script src="~/assets/js/vendor/modernizr-3.7.1.min.js"></script>
     <!-- Bootstrap JS -->
-    <script src="~/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="~/bootstrap-5.3.0-alpha2-dist/js/bootstrap.min.js"></script>
 
     <!-- Swiper Slider JS -->
     <script src="~/assets/js/plugins/swiper-bundle.min.js"></script>
@@ -632,7 +468,103 @@
 
     <!-- Main JS -->
     <script src="~/assets/js/main.js"></script>
-
     
+    <script src="~/toastr/toastr.min.js"></script>
+    <script>
+        toastr.options.positionClass = 'toast-bottom-right';
+        function Alo(productId) {
+            // Call the server to get the product details by ID using AJAX
+            $.ajax({
+                type: "GET",
+                url: "/Home/QuickView/" + productId,
+                dataType: "json",
+                success: function (data) {
+                    // Update the modal content with the product details
+                    $('.quickview__title').html(data.product.name);
+                    $('.quickview__des').html(data.product.description);
+                    $('.quickview__price').html(data.product.price);
+                    $('.quickview__img').attr('src', '/Images/' + data.productImage.imagePath);
+                    // Show the modal
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function addWishList(productId) {
+            $.ajax({
+                type: "GET",
+                url: "/WishList/AddToWishList/" + productId,
+                dataType: "json",
+                success: function (data) {
+                    // Update the modal content with the product details
+                    if (data) {
+                        toastr.success('Thêm thành công')
+                    } else {
+                        toastr.warning('Đã có trong danh sách yêu thích')
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function addToCart(productId) {
+            $.ajax({
+                url: '/Cart/AddToCart?id=' + productId,
+                method: 'POST',
+                success: function (updatedCartHtml) {
+                    // Replace the current cart HTML with the updated cart HTML
+                    $('.cart-item-wrapper').html(updatedCartHtml);
+                    toastr.success('Đã thêm vào giỏ hàng');
+                    console.log(updatedCartHtml);
+                    var spanElement = $('.cart-item_count');
+                    var currentValue = parseInt(spanElement.text(), 10);
+                    var newValue = currentValue + 1;
+                    spanElement.text(newValue);
+
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error adding product to cart:', error);
+                }
+            });
+        }
+
+        $(document).on('click', '.inc.qtybutton', function () {
+            $.ajax({
+                url: '/Cart/AddToCart2?id=' + $(this).data('id'),
+                method: 'POST',
+                success: function (updatedCartHtml) {
+                    // Replace the current cart HTML with the updated cart HTML
+                    $('.cart-main-wrapper').html(updatedCartHtml);
+                    console.log(updatedCartHtml);
+                    var spanElement = $('.cart-item_count');
+                    var currentValue = parseInt(spanElement.text(), 10);
+                    var newValue = currentValue + 1;
+                    spanElement.text(newValue);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error adding product to cart:', error);
+                }
+            });
+        });
+
+        $(document).on('click', '.dec.qtybutton', function () {
+            $.ajax({
+                url: '/Cart/RemoveFromCart2?id=' + $(this).data('id'),
+                method: 'POST',
+                success: function (updatedCartHtml) {
+                    // Replace the current cart HTML with the updated cart HTML
+                    $('.cart-main-wrapper').html(updatedCartHtml);
+                    console.log(updatedCartHtml);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error adding product to cart:', error);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

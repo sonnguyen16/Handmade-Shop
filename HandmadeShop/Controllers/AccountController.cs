@@ -26,16 +26,23 @@ namespace HandmadeShop.Controllers
         }
 
 
-        public async Task<IActionResult> User(string userName)
+        public async Task<IActionResult> Users(string userName)
         {
-            var user =  _context.Users.ToListAsync().Result.FirstOrDefault(u => u.UserName == userName);
-            return View("Dashboard",user);
+            var users =  _context.Users.ToListAsync();
+            return View(users);
         }
 
 
         public IActionResult Login() => View();
 
-        public IActionResult Dashboard() => View();
+        public IActionResult Dashboard() {
+            var currentUser = HttpContext.User.Identity.Name;
+            if (currentUser == null)
+            {
+                return RedirectToAction("Login","Account");
+            }
+            return View(_context.Users.ToListAsync().Result.FirstOrDefault(u => u.UserName == currentUser));
+        }
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM loginVM)
@@ -51,14 +58,14 @@ namespace HandmadeShop.Controllers
                     var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
                     if (result.Succeeded)
                     {
-                        return await User(loginVM.EmailAddress);
+                        return RedirectToAction("Index","Home");
                     }
                 }
-                TempData["Error"] = "Wrong credentials. Please, try again!";
+                TempData["Error"] = "Thông tin đăng nhập không đúng";
                 return View(loginVM);
             }
 
-            TempData["Error"] = "Wrong credentials. Please, try again!";
+            TempData["Error"] = "Thông tin đăng nhập không đúng";
             return View(loginVM);
         }
 
@@ -73,7 +80,7 @@ namespace HandmadeShop.Controllers
             var user = await _userManager.FindByEmailAsync(registerVM.EmailAddress);
             if(user != null)
             {
-                TempData["Error"] = "This email address is already in use";
+                TempData["Error"] = "Email này đã được sử dụng";
                 return View(registerVM);
             }
 
@@ -86,7 +93,10 @@ namespace HandmadeShop.Controllers
             var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
 
             if (newUserResponse.Succeeded)
+            {
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+                await _signInManager.PasswordSignInAsync(newUser, registerVM.Password, false, false);
+            }
 
             return RedirectToAction("Index","Home");
         }
