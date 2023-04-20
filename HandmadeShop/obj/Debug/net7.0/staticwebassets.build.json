@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AhW3c0VWSe1rvo+gJbp/tdd7xqOzO53vcbnxjX0OCQU=",
+  "Hash": "k7ScOdFeS3K+J+9iwoHRZokTZESKK5jqoglF8PJ1M5A=",
   "Source": "HandmadeShop",
   "BasePath": "_content/HandmadeShop",
   "Mode": "Default",
@@ -39149,6 +39149,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\handmade8-4.jpg"
+    },
+    {
+      "Identity": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\Images\\tien.jpg",
+      "SourceId": "HandmadeShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\",
+      "BasePath": "_content/HandmadeShop",
+      "RelativePath": "Images/tien.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\tien.jpg"
+    },
+    {
+      "Identity": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\Images\\tma.jpg",
+      "SourceId": "HandmadeShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\",
+      "BasePath": "_content/HandmadeShop",
+      "RelativePath": "Images/tma.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\tma.jpg"
     },
     {
       "Identity": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\js\\signalr\\dist\\browser\\signalr.js",

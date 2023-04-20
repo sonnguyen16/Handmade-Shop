@@ -117,6 +117,14 @@
       "PackagePath": "staticwebassets\\Images\\handmade8-4.jpg"
     },
     {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\Images\\tien.jpg",
+      "PackagePath": "staticwebassets\\Images\\tien.jpg"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\Images\\tma.jpg",
+      "PackagePath": "staticwebassets\\Images\\tma.jpg"
+    },
+    {
       "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\admin\\login.css",
       "PackagePath": "staticwebassets\\admin\\login.css"
     },

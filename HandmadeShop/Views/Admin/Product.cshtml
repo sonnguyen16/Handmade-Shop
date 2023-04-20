@@ -1,4 +1,5 @@
 ﻿@using HandmadeShop.Models;
+@using HandmadeShop.Models.ViewModel;
 @{
     Layout = null;
     var user = ViewBag.user as ApplicationUser;
@@ -124,15 +125,14 @@
                             <label for="material">Material</label>
                             <input name="material" type="text" class="form-control" id="material" placeholder="Enter material">
                         </div>
-                        <div class="form-group mb-2">
-                            <!-- Add new file input field -->
-                            <label for="images">Product Images</label>
-                            <input type="file" class="form-control" id="images" name="images[]" multiple>
-                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button id="submit" type="submit" class="btn btn-primary">Save changes</button>
+
                         </div>
+                    </form>
+                    <form id="fileUploadForm" method="post" enctype="multipart/form-data">
+                        <input type="file" name="files" multiple />
                     </form>
                 </div>
 
@@ -226,6 +226,8 @@
         })
     }
 
+
+
     function renderAction(data) {
         var htmlButton = `<div class="btn-group align-top">`;
         $.each(data, function (index, item) {
@@ -237,10 +239,13 @@
                 '<i class="' +
                 item.icon + '"></i>' +
                 "</button>";
+      
         });
         htmlButton += "</div>";
         return htmlButton;
+        
     }
+
 
 
     $('#productForm').validate({
@@ -301,7 +306,7 @@
         },
         submitHandler: function (e) {
             let product;
-            if ($('#submit').attr('data-id') === undefined){
+            if ($('#submit').attr('data-id') === undefined) {
                 product = {
                     name: $("#name").val(),
                     price: $("#price").val(),
@@ -310,7 +315,7 @@
                     material: $("#material").val(),
                     description: $("#description").val(),
                 }
-            }else{
+            } else {
                 product = {
                     id: $('#submit').attr('data-id'),
                     name: $("#name").val(),
@@ -322,8 +327,7 @@
                 }
             }
 
-            console.log(product)
-           
+          
 
             $.ajax({
                 type: 'POST',
@@ -331,7 +335,7 @@
                 data: JSON.stringify(product),
                 contentType: "application/json; charset=utf-8",
                 success: function (response) {
-                    if (response) {
+                    if (response.status) {
                         toastr.success('Thành công')
                         $('.modal').modal('hide')
                         $('.table').DataTable().destroy()
@@ -342,6 +346,23 @@
                         $("#categoryid").val(1)
                         $("#material").val('')
                         $("#description").val('')
+                        if ($('#submit').attr('data-id') === undefined) {
+                            var formData = new FormData($('#fileUploadForm')[0]);
+
+                            $.ajax({
+                                url: '/admin/Upload/' + response.data,
+                                type: 'POST',
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                success: function (data) {
+                                    console.log(data)
+                                },
+                                error: function () {
+                                    // Xử lý lỗi nếu có
+                                }
+                            });
+                        }
                     } else {
                         toastr.error('Có lỗi xảy ra')
                     }
@@ -352,6 +373,8 @@
 
 
             });
+
+           
 
         }
     });
@@ -380,7 +403,8 @@
                 $("#categoryid").val(response.categoryID)
                 $("#material").val(response.material)
                 $("#description").val(response.description)
-                $('#submit').attr('data-url', '/admin/updateproduct/'+response.id);
+                $('#submit').attr('data-url', '/admin/updateproduct/' + response.id);
+
 
 
             }, error: function () {
@@ -413,6 +437,7 @@
         }
     })
 
+  
 
 
 </script>

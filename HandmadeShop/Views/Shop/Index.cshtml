@@ -57,12 +57,20 @@
                                     <div class="single-product position-relative mr-0 ml-0">
                                         <div class="product-image">
                                         <a class="d-block" asp-controller="Product" asp-action="index" asp-route-id="@item.ID">
-                                                    @{
-                                                        var image1 = Model.ProductImages.FirstOrDefault(p => p.ProductID == item.ID);
-                                                        var image2 = Model.ProductImages.FirstOrDefault(p => p.ProductID == item.ID && p.ID != image1.ID);
-                                                    }
-                                                    <img src="~/Images/@image1.ImagePath" style="height: 15rem" alt="" class="product-image-1 w-100 object-fit-cover">
-                                                    <img src="~/Images/@image2.ImagePath" style="height: 15rem" alt="" class="product-image-2 position-absolute w-100 object-fit-cover">
+                                            @{
+                                                var image1 = myData.ProductImages.FirstOrDefault(p => p.ProductID == item.ID);
+                                                var image2 = myData.ProductImages.FirstOrDefault(p => p.ProductID == item.ID && p.ID != image1.ID);
+                                            }
+                                            @if (image1 != null && image2 != null)
+                                            {
+                                                <img src="~/Images/@image1.ImagePath" style="height: 15rem" alt="" class="product-image-1 w-100 object-fit-cover">
+                                                <img src="~/Images/@image2.ImagePath" style="height: 15rem" alt="" class="product-image-2 position-absolute w-100 object-fit-cover">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/assets/images/icon/Asset 2log.png" style="height: 15rem" alt="" class="product-image-1 w-100 object-fit-cover">
+                                                <img src="~/assets/images/icon/Asset 2log.png" style="height: 15rem" alt="" class="product-image-2 position-absolute w-100 object-fit-cover">
+                                            }
                                             </a>
                                             <div class="add-action d-flex flex-column position-absolute">
                                                 <a onclick="addWishList(@item.ID)"  title="Add To Wishlist">

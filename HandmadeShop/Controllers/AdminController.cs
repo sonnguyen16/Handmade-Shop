@@ -6,6 +6,7 @@ using HandmadeShop.Models.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HandmadeShop.Controllers
@@ -19,7 +20,9 @@ namespace HandmadeShop.Controllers
         private readonly IAddressService addressService;
         private readonly IOrderService orderService;
         private readonly IOrderItemService orderItemService;
-        public AdminController(IOrderItemService orderItemService, IOrderService orderService, IAddressService addressService, IProductService productRepository, IProductImageService productImageService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, AppDbContext context)
+        public AppDbContext dbContext;
+        private IWebHostEnvironment environment { get; set; }
+        public AdminController(AppDbContext dbContext,IWebHostEnvironment environment,IOrderItemService orderItemService, IOrderService orderService, IAddressService addressService, IProductService productRepository, IProductImageService productImageService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -28,6 +31,8 @@ namespace HandmadeShop.Controllers
             this.addressService = addressService;
             this.orderService = orderService;
             this.orderItemService = orderItemService;
+            this.environment = environment;
+            this.dbContext = dbContext;
         }
 
         public IActionResult Dashboard()
@@ -99,14 +104,52 @@ namespace HandmadeShop.Controllers
             try
             {
                 await _productRepository.AddAsync(product);
-                return Json(true);
+                var addedProduct = await dbContext.Products.OrderByDescending(p => p.ID).FirstOrDefaultAsync(); // Lấy sản phẩm với ID mới nhất
+                int addedProductId = addedProduct.ID;
+                ids = addedProductId;
+                return Json(new { 
+                    status = true,
+                    data= ids
+                });
             }
             catch(Exception ex)
             {
-                return Json(false);
+                return Json(new
+                {
+                    status = false,
+                    data = ""
+                });
             }
              
         }
+
+        int ids;
+
+        [HttpPost]
+        public async Task<IActionResult> Upload(int id,List<IFormFile> files)
+        {
+            foreach (var file in files)
+            {
+                if (file.Length > 0)
+                {
+                    var fileName = file.FileName;
+                    string path = Path.Combine(environment.WebRootPath, "Images");
+                    string filePath = Path.Combine(path, fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                        await productImageService.AddAsync(new ProductImage
+                        {
+                            ProductID = id,
+                            ImagePath = fileName
+                        });
+                    }
+                }
+            }
+            return Json(id);
+
+        }
+
 
         [HttpPost]
 
@@ -117,11 +160,19 @@ namespace HandmadeShop.Controllers
             try
             {
                 await _productRepository.UpdateAsync(id,product);
-                return Json(true);
+                return Json(new
+                {
+                    status = true,
+                    data = id
+                });
             }
             catch (Exception ex)
             {
-                return Json(false);
+                return Json(new
+                {
+                    status = false,
+                    data = ""
+                });
             }
 
         }
@@ -143,9 +194,9 @@ namespace HandmadeShop.Controllers
         [HttpGet]
         public async Task<IActionResult> getaProduct(int id)
         {
-           var product = await _productRepository.GetByIdAsync(id);
-
+            var product = await _productRepository.GetByIdAsync(id);
             return Json(product);
         }
+
     }
 }

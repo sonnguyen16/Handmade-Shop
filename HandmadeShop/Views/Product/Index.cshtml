@@ -133,7 +133,7 @@
                                 <!-- Start Single Review -->
                                 <div class="pro_review mb-5">
                                     <div class="review_thumb">
-                                        <img alt="review images" src="assets/images/review/1.jpg">
+                                        <img alt="review images" src="~/assets/images/icon/Asset 2log.png">
                                     </div>
                                     <div class="review_details">
                                         <div class="review_info mb-2">
@@ -292,12 +292,20 @@
                                     <div class="single-product position-relative mb-30">
                                         <div class="product-image">
                                             <a class="d-block" asp-controller="Product" asp-action="index" asp-route-id="@item.ID">
-                                                @{
-                                                    var image1 = Model.ProductImages.FirstOrDefault(p => p.ProductID == item.ID);
-                                                    var image2 = Model.ProductImages.FirstOrDefault(p => p.ProductID == item.ID && p.ID != image1.ID);
-                                                }
+                                            @{
+                                                var image1 = Model.ProductImages.FirstOrDefault(p => p.ProductID == item.ID);
+                                                var image2 = Model.ProductImages.FirstOrDefault(p => p.ProductID == item.ID && p.ID != image1.ID);
+                                            }
+                                            @if (image1 != null && image2 != null)
+                                            {
                                                 <img src="~/Images/@image1.ImagePath" style="height: 15rem" alt="" class="product-image-1 w-100 object-fit-cover">
                                                 <img src="~/Images/@image2.ImagePath" style="height: 15rem" alt="" class="product-image-2 position-absolute w-100 object-fit-cover">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/assets/images/icon/Asset 2log.png" style="height: 15rem" alt="" class="product-image-1 w-100 object-fit-cover">
+                                                <img src="~/assets/images/icon/Asset 2log.png" style="height: 15rem" alt="" class="product-image-2 position-absolute w-100 object-fit-cover">
+                                            }
 
                                             </a>
                                             <div class="add-action d-flex flex-column position-absolute">
