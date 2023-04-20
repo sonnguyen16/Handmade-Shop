@@ -83,14 +83,14 @@
                     <div class="quantity-with_btn mb-5">
                         <div class="quantity">
                             <div class="cart-plus-minus">
-                                <input class="cart-plus-minus-box" value="0" type="text">
-                                <div class="dec qtybutton">-</div>
-                                <div class="inc qtybutton">+</div>
+                                <input id ="quick__view-sl" class="cart-plus-minus-box" value="1" type="text">
+                                <div class="dec qtybutton1">-</div>
+                                <div class="inc qtybutton1">+</div>
                             </div>
                         </div>
                         <div class="add-to_cart">
-                            <a class="btn product-cart button-icon flosun-button dark-btn" href="cart.html">Add to cart</a>
-                            <a class="btn flosun-button secondary-btn secondary-border rounded-0" href="wishlist.html">Add to wishlist</a>
+                            <a onclick="addToCart(@Model.Product.ID,parseInt($('#quick__view-sl').val()))" class="btn product-cart button-icon flosun-button dark-btn">Add to cart</a>
+                            <a onclick="addWishList(@Model.Product.ID)" class="btn flosun-button secondary-btn secondary-border rounded-0" >Add to wishlist</a>
                         </div>
                     </div>
                     <div class="social-share mb-4">
@@ -301,8 +301,8 @@
 
                                             </a>
                                             <div class="add-action d-flex flex-column position-absolute">
-                                                <a href="wishlist.html" title="Add To Wishlist">
-                                                    <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i>
+                                            <a onclick="addWishList(@item.ID)" title="Add To Wishlist">
+                                                    <i  class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i>
                                                 </a>
                                                 <a onclick="Alo(@item.ID)" href="#exampleModalCenter" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                                                     <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i>
@@ -324,7 +324,7 @@
                                                 <span class="regular-price ">@String.Format("{0:0,0 vnđ}", item.Price)</span>
                                                 <span class="old-price"><del>@String.Format("{0:0,0 vnđ}", 150000)</del></span>
                                             </div>
-                                            <a href="cart.html" class="btn product-cart">Add to Cart</a>
+                                            <a onclick="addToCart(@item.ID,1)" class="btn product-cart">Add to Cart</a>
                                         </div>
                                     </div>
                                 </div>
@@ -338,24 +338,5 @@
         </div>
     </div>
 </div>
-<script>
-    function Alo(productId) {
-        // Call the server to get the product details by ID using AJAX
-        $.ajax({
-            type: "GET",
-            url: "/Home/QuickView/" + productId,
-            dataType: "json",
-            success: function (data) {
-                // Update the modal content with the product details
-                $('.quickview__title').html(data.product.name);
-                $('.quickview__des').html(data.product.description);
-                $('.quickview__price').html(data.product.price);
-                $('.quickview__img').attr('src', '/Images/' + data.productImage.imagePath);
-                // Show the modal
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
-    }
-</script>
+@Html.Partial("/Views/Home/QuickView.cshtml")
+

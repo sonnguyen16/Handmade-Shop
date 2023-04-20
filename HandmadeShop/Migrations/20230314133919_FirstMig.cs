@@ -110,17 +110,6 @@ namespace HandmadeShop.Migrations
                     table.PrimaryKey("PK_UserLogins", x => x.UserId);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "UserRoles",
-                columns: table => new
-                {
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserRoles", x => x.RoleId);
-                });
 
             migrationBuilder.CreateTable(
                 name: "UserTokens",

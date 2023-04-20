@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using HandmadeShop.Data.Base;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HandmadeShop.Models
 {
-    public class Review
+    public class Review: IEntityBase
     {
         public int ID { get; set; }
         public int ProductID { get; set; }

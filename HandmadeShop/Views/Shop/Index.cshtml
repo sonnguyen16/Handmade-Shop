@@ -1,6 +1,8 @@
 ﻿@using HandmadeShop.Models.ViewModel;
 
-
+@{
+    var myData = ViewBag.ListViewModel as ListViewModel;
+}
 @model ListViewModel
 
     <!-- Breadcrumb Area Start Here -->
@@ -86,7 +88,7 @@
                                                 <span class="regular-price ">@String.Format("{0:0,0 vnđ}", item.Price)</span>
                                                 <span class="old-price"><del>@String.Format("{0:0,0 vnđ}", 150000)</del></span>
                                             </div>
-                                        <a onclick="addToCart(@item.ID)" class="btn product-cart">Add to Cart</a>
+                                        <a onclick="addToCart(@item.ID,1)" class="btn product-cart">Add to Cart</a>
                                         </div>
                                         <div class="product-content-listview">
                                             <div class="product-title">
@@ -105,7 +107,7 @@
                                             </div>
                                             <p class="desc-content">@item.Description</p>
                                             <div class="button-listview">
-                                            <a onclick="addToCart(@item.ID)" class="btn product-cart button-icon flosun-button dark-btn" data-toggle="tooltip" data-placement="top" title="Add to Cart"> <span>Add to Cart</span> </a>
+                                            <a onclick="addToCart(@item.ID,1)" class="btn product-cart button-icon flosun-button dark-btn" data-toggle="tooltip" data-placement="top" title="Add to Cart"> <span>Add to Cart</span> </a>
                                             <a class="list-icon" onclick="addWishList(@item.ID)" title="Add To Wishlist">
                                                     <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="top" title="Wishlist"></i>
                                                 </a>
@@ -144,14 +146,14 @@
                             <div class="widget-list widget-mb-1">
                                 <h3 class="widget-title">Search</h3>
                                 <div class="search-box">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search Our Store" aria-label="Search Our Store">
+                                    <form asp-action="Filter" class="input-group">
+                                        <input name="searchString" type="text" class="form-control" placeholder="Search Our Store" aria-label="Search Our Store">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button">
+                                            <button class="btn btn-outline-secondary" type="submit">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                             <div class="widget-list widget-mb-1">
@@ -159,35 +161,20 @@
                                 <!-- Widget Menu Start -->
                                 <nav>
                                     <ul class="mobile-menu p-0 m-0">
-                                        <li class="menu-item-has-children"><a href="#">Birthday Boqutets</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Aster</a></li>
-                                                <li><a href="#">Aubrieta</a></li>
-                                                <li><a href="#">Basket of Gold</a></li>
-                                            </ul>
+                                        <li class="menu-item-has-children">
+                                            <a asp-action="Index" asp-controller="Shop" asp-route-categoryId="1">Decor</a>
                                         </li>
-                                        <li class="menu-item-has-children"><a href="#">Funeral Flowers</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Cleome</a></li>
-                                                <li><a href="#">Columbine</a></li>
-                                                <li><a href="#">Coneflower</a></li>
-                                                <li><a href="#">Corepsis</a></li>
-                                            </ul>
+                                        <li class="menu-item-has-children">
+                                            <a asp-action="Index" asp-controller="Shop" asp-route-categoryId="2">Đồ chơi</a>
                                         </li>
-                                        <li class="menu-item-has-children"><a href="#">Interior Decor</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Calendula</a></li>
-                                                <li><a href="#">Castor Bean</a></li>
-                                                <li><a href="#">Catmint</a></li>
-                                                <li><a href="#">Chives</a></li>
-                                            </ul>
+                                        <li class="menu-item-has-children">
+                                            <a asp-action="Index" asp-controller="Shop" asp-route-categoryId="3">Trang phục</a>
                                         </li>
-                                        <li class="menu-item-has-children"><a href="#">Custom Orders</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Lily</a></li>
-                                                <li><a href="#">Rose</a></li>
-                                                <li><a href="#">Sunflower</a></li>
-                                            </ul>
+                                        <li class="menu-item-has-children">
+                                            <a asp-action="Index" asp-controller="Shop" asp-route-categoryId="4">Trang sức</a>
+                                        </li>
+                                        <li class="menu-item-has-children">
+                                            <a asp-action="Index" asp-controller="Shop" asp-route-categoryId="5">Khác</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -203,112 +190,7 @@
                                 </form>
                                 <!-- Widget Menu End -->
                             </div>
-                            <div class="widget-list widget-mb-2">
-                                <h3 class="widget-title">Color</h3>
-                                <div class="sidebar-body">
-                                    <ul class="checkbox-container categories-list">
-                                        <li>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck12">
-                                                <label class="custom-control-label" for="customCheck12">black (20)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck13">
-                                                <label class="custom-control-label" for="customCheck13">red (6)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck14">
-                                                <label class="custom-control-label" for="customCheck14">blue (8)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck11">
-                                                <label class="custom-control-label" for="customCheck11">green (5)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck15">
-                                                <label class="custom-control-label" for="customCheck15">pink (4)</label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             
-                             <div class="widget-list mb-0">
-                                <h3 class="widget-title">Recent Products</h3>
-                                <div class="sidebar-body">
-                                    <div class="sidebar-product align-items-center">
-                                        <a href="product-details.html" class="image">
-                                            <img src="assets/images/cart/1.jpg" alt="product">
-                                        </a>
-                                        <div class="product-content">
-                                            <div class="product-title">
-                                                <h4 class="title-2"> <a href="product-details.html">Glory of the Snow</a></h4>
-                                            </div>
-                                            <div class="price-box">
-                                                <span class="regular-price ">$80.00</span>
-                                                <span class="old-price"><del>$90.00</del></span>
-                                            </div>
-                                            <div class="product-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="sidebar-product align-items-center">
-                                        <a href="product-details.html" class="image">
-                                            <img src="assets/images/cart/2.jpg" alt="product">
-                                        </a>
-                                        <div class="product-content">
-                                            <div class="product-title">
-                                                <h4 class="title-2"> <a href="product-details.html">Pearly Everlasting</a></h4>
-                                            </div>
-                                            <div class="price-box">
-                                                <span class="regular-price ">$50.00</span>
-                                                <span class="old-price"><del>$60.00</del></span>
-                                            </div>
-                                            <div class="product-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="sidebar-product align-items-center">
-                                        <a href="product-details.html" class="image">
-                                            <img src="assets/images/cart/3.jpg" alt="product">
-                                        </a>
-                                        <div class="product-content">
-                                            <div class="product-title">
-                                                <h4 class="title-2"> <a href="product-details.html">Jack in the Pulpit</a></h4>
-                                            </div>
-                                            <div class="price-box">
-                                                <span class="regular-price ">$40.00</span>
-                                                <span class="old-price"><del>$50.00</del></span>
-                                            </div>
-                                            <div class="product-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </aside>
                     <!-- Sidebar Widget End -->
@@ -318,6 +200,7 @@
     </div>
     <!-- Shop Main Area End Here -->
 @Html.Partial("~/Views/Home/QuickView.cshtml");
+
 
 
     

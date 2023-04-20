@@ -1,0 +1,200 @@
+﻿@using HandmadeShop.Models;
+@{
+    Layout = null;
+    var user = ViewBag.user as ApplicationUser;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href='~/bootstrap-5.3.0-alpha2-dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="~/admin/style.css">
+    <title>AdminSite</title>
+    <style>
+        video {
+            border-radius: 8px;
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="#" class="brand"><i class='bx bxs-smile icon'></i> AdminSite</a>
+        <ul class="side-menu">
+            <li><a asp-action="Dashboard" class="active"><i class='bx bxs-dashboard icon'></i> Dashboard</a></li>
+            <li class="divider" data-text="main">Main</li>
+            <li><a asp-action="Product"><i class='bx bxs-gift icon'></i> Products</a></li>
+            <li><a href="#"><i class='bx bxs-category icon'></i> Categories</a></li>
+            <li><a href="#"><i class='bx bxs-offer icon'></i> Orders</a></li>
+            <li><a href="#"><i class='bx bxs-user icon'></i> Users</a></li>
+        </ul>
+    </section>
+    <!-- SIDEBAR -->
+    <!-- NAVBAR -->
+    <section id="content">
+        <!-- NAVBAR -->
+        <nav>
+            <i class='bx bx-menu toggle-sidebar'></i>
+            <form action="#">
+                <div class="form-group">
+                    <input type="text" placeholder="Search...">
+                    <i class='bx bx-search icon'></i>
+                </div>
+            </form>
+            <span class="divider"></span>
+            <div class="profile">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+                <ul class="profile-link">
+                    <li><a href="#"><i class='bx bxs-user-circle icon'></i> Profile</a></li>
+                    <li><a href="#"><i class='bx bxs-cog'></i> Settings</a></li>
+                    <li><a href="#"><i class='bx bxs-log-out-circle'></i> Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- NAVBAR -->
+        <!-- MAIN -->
+        <main>
+            <button id="play" class="btn btn-primary">Bắt đầu phát trực tiếp</button>
+            <div class="data">
+                <div class="content-data container" style="height: 75vh;">
+                    <div class="row h-100">
+                        <!-- Video bên trái -->
+                        <div class="col-md-7">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <div video-grid></div>
+                            </div>
+                        </div>
+                        <!-- Khung chat bên phải -->
+                        <div class="col-md-5">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    Chat
+                                </div>
+                                <div class="card-body" style="overflow-y: scroll;">
+                                    <ul id="messagesList" class="list-group list-group-flush">
+                                        <!-- Các tin nhắn chat sẽ được thêm vào đây -->
+                                    </ul>
+                                </div>
+                                <div class="card-footer">
+                                    <form id="chat-form">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="messageInput" placeholder="Nhập tin nhắn...">
+                                            <button id="sendButton" class="btn btn-primary" type="submit">Gửi</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- MAIN -->
+    </section>
+    <!-- NAVBAR -->
+
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/bootstrap-5.3.0-alpha2-dist/js/bootstrap.js"></script>
+    <script>
+        "use strict";
+
+        var videoGrid = document.querySelector('[video-grid]');
+        const myVideo = document.createElement('video')
+
+        const ROOM_ID = '123'
+        let userId = null
+        let localStream = null
+        let username = '@user.FullName'
+
+        document.getElementById('play').addEventListener('click', () => {
+            navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function (stream) {
+                addVideoStream(myVideo, stream)
+                localStream = stream
+                connection.invoke("Notification","Admin đang livestream,xem ngay thôi!").catch(function (err) {
+                    return console.error(err.toString());
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        })
+
+
+        const connection = new signalR.HubConnectionBuilder().withUrl("/meeting").build();
+
+
+        const myPeer = new Peer()
+
+        myPeer.on('open', id => {
+            userId = id;
+
+            const startSignalR = async () => {
+                await connection.start();
+                await connection.invoke("JoinRoom", ROOM_ID, userId)
+            }
+            startSignalR();
+        })
+
+        connection.on('user-connected', id => {
+            if (userId === id) return;
+            console.log(`User connected : ${id}`)
+            ConnectNewUser(id, localStream)
+        })
+
+        myPeer.on('call', call => {
+            call.answer(localStream)
+
+            const userVideo = document.createElement('video')
+            call.on('stream', userVideoStream => {
+                addVideoStream(userVideo, userVideoStream)
+            })
+        })
+
+
+        const addVideoStream = (video, stream) => {
+            video.srcObject = stream;
+            video.addEventListener('loadedmetadata', () => {
+                video.play()
+            })
+            videoGrid.appendChild(video)
+        }
+
+        const ConnectNewUser = (userId, localStream) => {
+            const userVideo = document.createElement('video')
+            const call = myPeer.call(userId, localStream)
+
+            call.on('stream', userVideoStream => {
+                addVideoStream(userVideo, userVideoStream)
+            })
+
+            call.on('close', () => {
+                userVideo.remove()
+            })
+        }
+
+        connection.on("ReceiveMessage", function (user,message) {
+            var li = document.createElement("li");
+            document.getElementById("messagesList").appendChild(li);
+            li.textContent = `${user}: ${message}`;
+        });
+
+    
+        document.getElementById("sendButton").addEventListener("click", function (event) {
+            var message = document.getElementById("messageInput").value;
+            connection.invoke("SendMessage",username , message).catch(function (err) {
+                return console.error(err.toString());
+            });
+            document.getElementById("messageInput").value = '';
+            event.preventDefault();
+        });
+    </script>
+    <script src="~/admin/script.js"></script>
+
+</body>
+</html>

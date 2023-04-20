@@ -1,0 +1,176 @@
+﻿@using HandmadeShop.Models.ViewModel;
+@using HandmadeShop.Models;
+@{
+    var myData = ViewBag.ListViewModel as ListViewModel;
+}
+
+@model IEnumerable<Address>
+
+
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Checkout</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li>Checkout</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+<!-- Checkout Area Start Here -->
+<div class="checkout-area mt-no-text mb-5">
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-lg-6 col-12 col-custom">
+                <form>
+                    <div class="checkbox-form">
+                        <h3>Billing Details</h3>
+                        <div class="row">
+                            <div class="col-md-12 col-custom">
+                                <div class="myniceselect country-select clearfix">
+                                    <label>Select Your Address <span class="required">*</span></label>
+                                    <select class="myniceselect nice-select wide rounded-0">
+                                        if(@Model.Count() > 0){
+                                             @foreach(var item in Model)
+                                            {
+                                                <option value="@item.ID">@item.Province, @item.City,@item.Ward, @item.Street</option>
+                                            }
+                                        }
+                                       
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-custom">
+                                <div class="checkout-form-list">
+                                    <label>Province</label>
+                                    @if(Model.Count() > 0)
+                                    {
+                                        <input value="@Model.First().Province" id="province" type="text">
+                                    }else
+                                    {
+                                        <input value="" id="province" type="text">
+                                    }
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-custom">
+                                <div class="checkout-form-list">
+                                    <label>City</label>
+                                     @if(Model.Count() > 0)
+                                    {
+                                        <input value="@Model.First().City" id="city" type="text">
+                                    }else
+                                    {
+                                        <input value="" id="city" type="text">
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-custom">
+                                <div class="checkout-form-list">
+                                    <label>Ward</label>
+                                    @if (Model.Count() > 0)
+                                    {
+                                        <input value="@Model.First().Ward" id="ward" type="text">
+                                    }
+                                    else
+                                    {
+                                        <input value="" id="ward" type="text">
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-custom">
+                                <div class="checkout-form-list">
+                                    <label>Street</label>
+                                     @if(Model.Count() > 0)
+                                    {
+                                        <input value="@Model.First().Street" id="street" type="text">
+                                    }else
+                                    {
+                                        <input value="" id="street" type="text">
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-custom">
+                                <div class="checkout-form-list">
+                                    <label>Phone</label>
+                                     @if(Model.Count() > 0)
+                                    {
+                                        <input value="@Model.First().Phone" id="phone" type="text">
+                                    }else
+                                    {
+                                        <input value="" id="phone" type="text">
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6 col-12 col-custom">
+                <div class="your-order">
+                    <h3>Your order</h3>
+                    <div class="your-order-table table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="cart-product-name">Product</th>
+                                    <th class="cart-product-total">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in myData.Cart.Items)
+                                {
+                                    <tr class="cart_item">
+                                        <td class="cart-product-name">
+                                            @item.Product.Name<strong class="product-quantity">
+                                                × @item.Quantity
+                                            </strong>
+                                        </td>
+                                        <td class="cart-product-total text-center"><span class="amount">@((item.Product.Price * item.Quantity).ToString("#,# VND"))</span></td>
+                                    </tr>
+
+                                }
+
+                            </tbody>
+                            <tfoot>
+                                <tr class="cart-subtotal">
+                                    <th>Cart Subtotal</th>
+                                    <td class="text-center"><span class="amount">@myData.Cart.ComputeTotalValue().ToString("#,# VND")</span></td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>Order Total</th>
+                                    <td class="text-center"><strong><span class="amount">@myData.Cart.ComputeTotalValue().ToString("#,# VND")</span></strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="payment-method">
+                        <div class="payment-accordion">
+                            <div id="accordion">
+                                <div class="card">
+                                    <div class="card-header" id="#payment-1">
+                                        <h5 class="panel-title mb-3">
+                                            <a href="#" class="" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Thanh toán khi nhận hàng
+                                            </a>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-button-payment">
+                                <button id="order" class="btn flosun-button secondary-btn black-color rounded-0 w-100">Place Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

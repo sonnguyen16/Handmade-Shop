@@ -26,8 +26,14 @@ namespace HandmadeShop.Controllers
 
         public IActionResult Index()
         {
-            var allProducts =  productService.GetAllAsync().Result;
-            var allProductImage =  productImageService.GetAllAsync().Result;
+            setData();
+            return View();
+        }
+
+        public void setData()
+        {
+            var allProducts = productService.GetAllAsync().Result;
+            var allProductImage = productImageService.GetAllAsync().Result;
 
             ListViewModel listViewModel = new ListViewModel()
             {
@@ -35,10 +41,8 @@ namespace HandmadeShop.Controllers
                 ProductImages = allProductImage,
                 Cart = GetCart()
             };
-            return View(listViewModel);
+            ViewBag.ListViewModel = listViewModel;
         }
-
-
 
         public IActionResult QuickView(int id)
         {
@@ -52,72 +56,41 @@ namespace HandmadeShop.Controllers
         }
 
         public IActionResult AboutUs() {
-            var allProducts = productService.GetAllAsync().Result;
-            var allProductImage = productImageService.GetAllAsync().Result;
-
-            ListViewModel listViewModel = new ListViewModel()
-            {
-                Products = allProducts,
-                ProductImages = allProductImage,
-                Cart = GetCart()
-            };
-            return View(listViewModel);
+            setData();
+            return View();
         }
 
         public IActionResult ContactUs()
         {
-            var allProducts = productService.GetAllAsync().Result;
-            var allProductImage = productImageService.GetAllAsync().Result;
-
-            ListViewModel listViewModel = new ListViewModel()
-            {
-                Products = allProducts,
-                ProductImages = allProductImage,
-                Cart = GetCart()
-            };
-            return View(listViewModel);
+            setData();
+            return View();
         }
 
         public IActionResult FAQ()
         {
-            var allProducts = productService.GetAllAsync().Result;
-            var allProductImage = productImageService.GetAllAsync().Result;
-
-            ListViewModel listViewModel = new ListViewModel()
-            {
-                Products = allProducts,
-                ProductImages = allProductImage,
-                Cart = GetCart()
-            };
-            return View(listViewModel);
+            setData();
+            return View();
         }
 
         public IActionResult Livestream()
         {
-            return View();
-        }
-
-
-        public IActionResult Clear(string returnUrl)
-        {
-            Cart cart = GetCart();
-            cart.Clear();
-            SaveCart(cart);
-            return Json("Xóa thành công");
-        }
-
+			var currentUser = HttpContext.User.Identity.Name;
+			if (currentUser == null)
+			{
+				return RedirectToAction("Login", "Account");
+			}
+			setData();
+			var userId = userManager.GetUserId(this.User);
+			ApplicationUser user = userManager.FindByIdAsync(userId).Result;
+			ViewBag.user = user;
+			return View();
+		}
 
         private Cart GetCart()
         {
             Cart cart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
             return cart;
         }
-
-        private void SaveCart(Cart cart)
-        {
-            HttpContext.Session.SetJson("Cart", cart);
-        }
-
 
     }
 }

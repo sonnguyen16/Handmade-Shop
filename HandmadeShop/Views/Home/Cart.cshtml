@@ -1,16 +1,20 @@
-﻿
+﻿@using HandmadeShop.Models.ViewModel;
 @{
     Layout = null;
+    var myData = ViewBag.ListViewModel as ListViewModel;
 }
-@using HandmadeShop.Models.ViewModel;
-@model ListViewModel
 
+@if(myData == null)
+{
+    <h4>Giỏ hàng của bạn chưa có gì cả!</h4>
+    return;
+}
 
-@foreach (var item in Model.Cart.Items)
+@foreach (var item in myData.Cart.Items)
 {
     <div class="single-cart-item">
         <div class="cart-img">
-            <a href="cart.html"><img style="height:5rem;" class="object-fit-cover" src="~/Images/@Model.ProductImages.FirstOrDefault(i => i.ProductID == item.Product.ID).ImagePath" alt=""></a>
+            <a href="cart.html"><img style="height:5rem;" class="object-fit-cover" src="~/Images/@myData.ProductImages.FirstOrDefault(i => i.ProductID == item.Product.ID).ImagePath" alt=""></a>
         </div>
         <div class="cart-text">
             <h5 class="title"><a href="cart.html">@item.Product.Name</a></h5>
@@ -28,10 +32,10 @@
 
 <div class="cart-price-total d-flex justify-content-between">
     <h5>Total :</h5>
-    <h5>@Model.Cart.ComputeTotalValue().ToString("#,# VND")</h5>
+    <h5>@myData.Cart.ComputeTotalValue().ToString("#,# VND")</h5>
 </div>
 <div class="cart-links d-flex justify-content-between">
     <a class="btn product-cart button-icon flosun-button dark-btn" asp-action="index" asp-controller="cart">View cart</a>
-    <a class="btn flosun-button secondary-btn rounded-0" href="checkout.html">Checkout</a>
+    <a asp-action="index" asp-controller="checkout" class="btn flosun-button secondary-btn rounded-0" >Checkout</a>
 </div>
 

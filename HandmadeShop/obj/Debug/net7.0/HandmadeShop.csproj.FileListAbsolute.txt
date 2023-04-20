@@ -279,3 +279,4 @@ C:\Workspace\Web 2\Handmade-Shop\HandmadeShop\bin\Debug\net7.0\runtimes\unix\lib
 C:\Workspace\Web 2\Handmade-Shop\HandmadeShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Workspace\Web 2\Handmade-Shop\HandmadeShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Workspace\Web 2\Handmade-Shop\HandmadeShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Workspace\Web 2\Handmade-Shop\HandmadeShop\bin\Debug\net7.0\libman.json

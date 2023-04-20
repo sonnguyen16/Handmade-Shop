@@ -5,5 +5,7 @@
         public IEnumerable<WishList> wishList { get; set; }
         public IEnumerable<ProductImage> productImages { get; set; }
         public IEnumerable<Product> products { get; set; }
+
+        public ListViewModel ListViewModel { get; set; }
     }
 }

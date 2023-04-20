@@ -19,43 +19,27 @@ namespace ProductManagement.Controllers
 
         public IActionResult Index()
         {
-            var allProducts = _productRepository.GetAllAsync().Result;
-            var allProductImage = productImageService.GetAllAsync().Result;
-
-            ListViewModel listViewModel = new ListViewModel()
-            {
-                Products = allProducts,
-                ProductImages = allProductImage,
-                Cart = GetCart()
-            };
-            return View(listViewModel);
+            setData();
+            return View();
         }
-
      
-        public IActionResult AddToCart(int id)
+        public IActionResult AddToCart(int id, int quantity)
         {
+          
             Product product = _productRepository.GetAllAsync().Result.FirstOrDefault(p => p.ID == id);
             if (product != null)
             {
                 Cart cart = GetCart();
-                cart.AddItem(product, 1);
+                cart.AddItem(product, quantity);
                 SaveCart(cart);
             }
-
-            var allProducts = _productRepository.GetAllAsync().Result;
-            var allProductImage = productImageService.GetAllAsync().Result;
-
-            ListViewModel listViewModel = new ListViewModel()
-            {
-                Products = allProducts,
-                ProductImages = allProductImage,
-                Cart = GetCart()
-            };
-            return PartialView("/Views/Home/Cart.cshtml", listViewModel);
+            setData();
+            return PartialView("/Views/Home/Cart.cshtml");
         }
 
         public IActionResult AddToCart2(int id)
         {
+           
             Product product = _productRepository.GetAllAsync().Result.FirstOrDefault(p => p.ID == id);
             if (product != null)
             {
@@ -63,21 +47,13 @@ namespace ProductManagement.Controllers
                 cart.AddItem(product, 1);
                 SaveCart(cart);
             }
-
-            var allProducts = _productRepository.GetAllAsync().Result;
-            var allProductImage = productImageService.GetAllAsync().Result;
-
-            ListViewModel listViewModel = new ListViewModel()
-            {
-                Products = allProducts,
-                ProductImages = allProductImage,
-                Cart = GetCart()
-            };
-            return PartialView("/Views/Cart/Cart.cshtml", listViewModel);
+            setData();
+            return PartialView("/Views/Cart/Cart.cshtml");
         }
 
         public IActionResult RemoveFromCart2(int id)
         {
+          
             Product product = _productRepository.GetAllAsync().Result.FirstOrDefault(p => p.ID == id);
             if (product != null)
             {
@@ -85,21 +61,13 @@ namespace ProductManagement.Controllers
                 cart.AddItem(product, -1);
                 SaveCart(cart);
             }
-
-            var allProducts = _productRepository.GetAllAsync().Result;
-            var allProductImage = productImageService.GetAllAsync().Result;
-
-            ListViewModel listViewModel = new ListViewModel()
-            {
-                Products = allProducts,
-                ProductImages = allProductImage,
-                Cart = GetCart()
-            };
-            return PartialView("/Views/Cart/Cart.cshtml", listViewModel);
+            setData();
+            return PartialView("/Views/Cart/Cart.cshtml");
         }
 
         public IActionResult RemoveFromCart(int id)
         {
+          
             Product product = _productRepository.GetAllAsync().Result.FirstOrDefault(p => p.ID == id);
             if (product != null)
             {
@@ -107,6 +75,12 @@ namespace ProductManagement.Controllers
                 cart.RemoveItem(product);
                 SaveCart(cart);
             }
+            setData();
+            return PartialView("/Views/Cart/Cart.cshtml");
+        }
+
+        public void setData()
+        {
             var allProducts = _productRepository.GetAllAsync().Result;
             var allProductImage = productImageService.GetAllAsync().Result;
 
@@ -116,15 +90,15 @@ namespace ProductManagement.Controllers
                 ProductImages = allProductImage,
                 Cart = GetCart()
             };
-            return PartialView("/Views/Cart/Cart.cshtml", listViewModel);
+            ViewBag.ListViewModel = listViewModel;
         }
 
-        public RedirectToActionResult Clear(string returnUrl)
+        public RedirectToActionResult Clear()
         {
             Cart cart = GetCart();
             cart.Clear();
             SaveCart(cart);
-            return RedirectToAction("Index", new { returnUrl });
+            return RedirectToAction("Index");
         }
 
 

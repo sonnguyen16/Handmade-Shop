@@ -1,82 +1,83 @@
-﻿@{
+﻿@using HandmadeShop.Models.ViewModel;
+@{
     Layout = null;
+    var myData = ViewBag.ListViewModel as ListViewModel;
 }
-@using HandmadeShop.Models.ViewModel;
-@model ListViewModel
 
 
 
-<div class="container custom-area">
-    <div class="row">
-        <div class="col-lg-12 col-custom">
-            <!-- Cart Table Area -->
-            <div class="cart-table table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th class="pro-thumbnail">Image</th>
-                            <th class="pro-title">Product</th>
-                            <th class="pro-price">Price</th>
-                            <th class="pro-quantity">Quantity</th>
-                            <th class="pro-subtotal">Total</th>
-                            <th class="pro-remove">Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table_cart">
-                        @foreach (var item in Model.Cart.Items)
-                        {
+    <div class="container custom-area">
+        <div class="row">
+            <div class="col-lg-12 col-custom">
+                <!-- Cart Table Area -->
+                <div class="cart-table table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="~/Images/@Model.ProductImages.FirstOrDefault(i => i.ProductID == item.Product.ID).ImagePath" alt="Product" /></a></td>
-                                <td class="pro-title">@item.Product.Name</td>
-                                <td class="pro-price"><span>@((item.Product.Price).ToString("#,# VND"))</span></td>
-                                <td class="pro-quantity">
-                                    <div class="quantity">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="@item.Quantity" type="text">
+                                <th class="pro-thumbnail">Image</th>
+                                <th class="pro-title">Product</th>
+                                <th class="pro-price">Price</th>
+                                <th class="pro-quantity">Quantity</th>
+                                <th class="pro-subtotal">Total</th>
+                                <th class="pro-remove">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table_cart">
+                            @foreach (var item in myData.Cart.Items)
+                            {
+                                <tr>
+                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="~/Images/@myData.ProductImages.FirstOrDefault(i => i.ProductID == item.Product.ID).ImagePath" alt="Product" /></a></td>
+                                    <td class="pro-title">@item.Product.Name</td>
+                                    <td class="pro-price"><span>@((item.Product.Price).ToString("#,# VND"))</span></td>
+                                    <td class="pro-quantity">
+                                        <div class="quantity">
+                                            <div class="cart-plus-minus">
+                                                <input class="cart-plus-minus-box" value="@item.Quantity" type="text">
 
-                                            <div data-id="@item.Product.ID" class="dec qtybutton"><i class="fa fa-minus"></i></div>
-                                            <div data-id="@item.Product.ID" class="inc qtybutton">
-                                                <i class="fa fa-plus"></i>
+                                                <div data-id="@item.Product.ID" class="dec qtybutton"><i class="fa fa-minus"></i></div>
+                                                <div data-id="@item.Product.ID" class="inc qtybutton">
+                                                    <i class="fa fa-plus"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="pro-subtotal"><span>@((item.Product.Price * item.Quantity).ToString("#,# VND"))</span></td>
-                                <td class="pro-remove"><a onclick="removeFromCart(@item.Product.ID)"><i class="lnr lnr-trash"></i></a></td>
-                            </tr>
-                        }
+                                    </td>
+                                    <td class="pro-subtotal"><span>@((item.Product.Price * item.Quantity).ToString("#,# VND"))</span></td>
+                                    <td class="pro-remove"><a onclick="removeFromCart(@item.Product.ID)"><i class="lnr lnr-trash"></i></a></td>
+                                </tr>
+                            }
 
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-5 ml-auto col-custom">
-            <!-- Cart Calculation Area -->
-            <div class="cart-calculator-wrapper">
-                <div class="cart-calculate-items">
-                    <h3>Cart Totals</h3>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tr>
-                                <td>Tiền sản phẩm</td>
-                                <td>@Model.Cart.ComputeTotalValue().ToString("#,# VND")</td>
-                            </tr>
-                            <tr>
-                                <td>Tiền ship</td>
-                                <td>FREE</td>
-                            </tr>
-                            <tr class="total">
-                                <td>Total</td>
-                                <td class="total-amount">@Model.Cart.ComputeTotalValue().ToString("#,# VND")</td>
-                            </tr>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
-                <a href="checkout.html" class="btn flosun-button primary-btn rounded-0 black-btn w-100">Proceed To Checkout</a>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 ml-auto col-custom">
+                <!-- Cart Calculation Area -->
+                <div class="cart-calculator-wrapper">
+                    <div class="cart-calculate-items">
+                        <h3>Cart Totals</h3>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <td>Tiền sản phẩm</td>
+                                    <td>@myData.Cart.ComputeTotalValue().ToString("#,# VND")</td>
+                                </tr>
+                                <tr>
+                                    <td>Tiền ship</td>
+                                    <td>FREE</td>
+                                </tr>
+                                <tr class="total">
+                                    <td>Total</td>
+                                    <td class="total-amount">@myData.Cart.ComputeTotalValue().ToString("#,# VND")</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <a asp-action="index" asp-controller="checkout" class="btn flosun-button primary-btn rounded-0 black-btn w-100">Proceed To Checkout</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+

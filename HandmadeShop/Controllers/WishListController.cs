@@ -6,6 +6,7 @@ using System.Collections;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using HandmadeShop.Infrastructure;
 
 namespace HandmadeShop.Controllers
 {
@@ -46,13 +47,28 @@ namespace HandmadeShop.Controllers
                 productImages = productImages,
                 products = productService.GetAllAsync().Result,
             };
-
+            setData();
 
             return View(wishListViewModel);
         }
 
+        public void setData()
+        {
+            var allProducts = productService.GetAllAsync().Result;
+            var allProductImage = productImageService.GetAllAsync().Result;
+
+            ListViewModel listViewModel = new ListViewModel()
+            {
+                Products = allProducts,
+                ProductImages = allProductImage,
+                Cart = GetCart()
+            };
+            ViewBag.ListViewModel = listViewModel;
+        }
+
         public async Task<IActionResult> AddToWishList(int id)
         {
+           
             string userId = _userManager.GetUserId(this.User);
            
             WishList wishList = new WishList()
@@ -65,6 +81,7 @@ namespace HandmadeShop.Controllers
                 return Json(0);
             }
             await wishListService.AddAsync(wishList);
+            setData();
 
             return Json(1);
         }
@@ -72,6 +89,7 @@ namespace HandmadeShop.Controllers
 
         public async Task<IActionResult> Remove(int id)
         {
+           
             await wishListService.DeleteAsync(id);
 
             var currentUser = HttpContext.User.Identity.Name;
@@ -91,8 +109,15 @@ namespace HandmadeShop.Controllers
                 productImages = productImages,
                 products = await productService.GetAllAsync(),
             };
+            setData();
 
             return View("Index", wishListViewModel);
+        }
+
+        private Cart GetCart()
+        {
+            Cart cart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
+            return cart;
         }
 
     }

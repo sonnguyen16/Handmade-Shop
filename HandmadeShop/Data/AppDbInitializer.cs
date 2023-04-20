@@ -58,7 +58,8 @@ namespace HandmadeShop.Data
                             Seller = "Lunami",
                             Description = "Đây là mô tả của Handmade 1",
                             CategoryID = 2,
-                            Material = "Len"
+                            Material = "Len",
+                            Status = ProductStatus.Approved
                         }, new Product()
                         {
                             Name = "Handmade 2",
@@ -66,7 +67,8 @@ namespace HandmadeShop.Data
                             Seller = "Lunami",
                             Description = "Đây là mô tả của Handmade 2",
                             CategoryID = 1,
-                            Material = "Kim loại, đèn led"
+                            Material = "Kim loại, đèn led",
+                            Status = ProductStatus.Approved
                         }, new Product()
                         {
                             Name = "Handmade 3",
@@ -74,7 +76,8 @@ namespace HandmadeShop.Data
                             Seller = "Lunami",
                             Description = "Đây là mô tả của Handmade 3",
                             CategoryID = 4,
-                            Material = "Kim loại"
+                            Material = "Kim loại",
+                            Status = ProductStatus.Approved
                         }, new Product()
                         {
                             Name = "Handmade 4",
@@ -82,8 +85,46 @@ namespace HandmadeShop.Data
                             Seller = "Lunami",
                             Description = "Đây là mô tả của Handmade 4",
                             CategoryID = 3,
-                            Material = "Vải"
-                        }, 
+                            Material = "Vải",
+                            Status = ProductStatus.Approved
+                        }, new Product()
+                        {
+                            Name = "Handmade 5",
+                            Price = 100000,
+                            Seller = "Lunami",
+                            Description = "Đây là mô tả của Handmade 5",
+                            CategoryID = 3,
+                            Material = "Vải",
+                            Status = ProductStatus.Approved
+                        },new Product()
+                        {
+                            Name = "Handmade 6",
+                            Price = 50000,
+                            Seller = "Lunami",
+                            Description = "Đây là mô tả của Handmade 6",
+                            CategoryID = 1,
+                            Material = "Kim loại",
+                            Status = ProductStatus.Approved
+                        },new Product()
+                        {
+                            Name = "Handmade 7",
+                            Price = 80000,
+                            Seller = "Lunami",
+                            Description = "Đây là mô tả của Handmade 7",
+                            CategoryID = 2,
+                            Material = "Bông",
+                            Status = ProductStatus.Approved
+                        },new Product()
+                        {
+                            Name = "Handmade 8",
+                            Price = 50000,
+                            Seller = "Lunami",
+                            Description = "Đây là mô tả của Handmade 8",
+                            CategoryID = 4,
+                            Material = "Vải",
+                            Status = ProductStatus.Approved
+                        },
+
 
                     });
                     context.SaveChanges();
@@ -159,17 +200,59 @@ namespace HandmadeShop.Data
                         },new ProductImage(){
                             ProductID = 4,
                             ImagePath = "handmade4-2.jpg"
+                        },new ProductImage(){
+                            ProductID = 5,
+                            ImagePath = "handmade5-1.jpg"
+                        },new ProductImage(){
+                            ProductID = 5,
+                            ImagePath = "handmade5-2.jpg"
+                        },new ProductImage(){
+                            ProductID = 5,
+                            ImagePath = "handmade5-3.jpg"
+                        },new ProductImage(){
+                            ProductID = 5,
+                            ImagePath = "handmade5-4.jpg"
+                        },new ProductImage(){
+                            ProductID = 6,
+                            ImagePath = "handmade6-1.jpg"
+                        },new ProductImage(){
+                            ProductID = 6,
+                            ImagePath = "handmade6-2.jpg"
+                        },new ProductImage(){
+                            ProductID = 6,
+                            ImagePath = "handmade6-3.jpg"
+                        },new ProductImage(){
+                            ProductID = 6,
+                            ImagePath = "handmade6-4.jpg"
+                        },new ProductImage(){
+                            ProductID = 7,
+                            ImagePath = "handmade7-1.jpg"
+                        },new ProductImage(){
+                            ProductID = 7,
+                            ImagePath = "handmade7-2.jpg"
+                        },new ProductImage(){
+                            ProductID = 7,
+                            ImagePath = "handmade7-3.jpg"
+                        },new ProductImage(){
+                            ProductID = 7,
+                            ImagePath = "handmade7-4.jpg"
+                        },new ProductImage(){
+                            ProductID = 8,
+                            ImagePath = "handmade8-1.jpg"
+                        },new ProductImage(){
+                            ProductID = 8,
+                            ImagePath = "handmade8-2.jpg"
+                        },new ProductImage(){
+                            ProductID = 8,
+                            ImagePath = "handmade8-3.jpg"
+                        },new ProductImage(){
+                            ProductID = 8,
+                            ImagePath = "handmade8-4.jpg"
                         },
 
                     });
 
-                    if (!context.WishLists.Any()) {
-                        context.WishLists.Add(new WishList()
-                        {
-                            ProductID = 1,
-                            AccountID = "1faf47ca-93a0-4504-a476-c98c25cf6d34"
-                        });
-                    }
+                   
                     context.SaveChanges();
                 }
            

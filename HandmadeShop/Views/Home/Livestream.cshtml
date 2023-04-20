@@ -1,3 +1,182 @@
-﻿@{
-    Layout = null;
+﻿@using HandmadeShop.Models;
+@{
+    var user = ViewBag.user as ApplicationUser;
 }
+
+<link href="~/bootstrap-5.3.0-alpha2-dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<style>
+    video {
+        border-radius: 8px;
+        width: 100%;
+        height: 100%
+    }
+
+    .data {
+        display: flex;
+        grid-gap: 20px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+        .data .content-data {
+            flex-grow: 1;
+            flex-basis: 400px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 10px;
+            box-shadow: 4px 4px 16px rgba(0, 0, 0, .1);
+        }
+
+    a {
+        text-decoration: none;
+    }
+
+    li {
+        list-style: none;
+    }
+
+</style>
+
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Livestream</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li>Livestream</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="data mt-5">
+    <div class="content-data container mb-5" style="height: 75vh;">
+        <div class="row h-100">
+            <!-- Video bên trái -->
+            <div class="col-md-7">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <div class="d-flex justify-content-center align-content-center h-100" video-grid>
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Khung chat bên phải -->
+            <div class="col-md-5">
+                <div class="card h-100">
+                    <div class="card-header">
+                        Chat
+                    </div>
+                    <div class="card-body" style="overflow-y: scroll;">
+                        <ul id="messagesList" class="list-group list-group-flush">
+                            <!-- Các tin nhắn chat sẽ được thêm vào đây -->
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <form id="chat-form">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="messageInput" placeholder="Nhập tin nhắn...">
+                                <button id="sendButton" class="btn btn-primary" type="submit">Gửi</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+<script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+
+<script>
+    "use strict";
+
+    var videoGrid = document.querySelector('[video-grid]');
+    const myVideo = document.createElement('video');
+    const spinner = document.querySelector('.spinner-border');
+   
+
+    const ROOM_ID = '123'
+    let userId = null
+    let localStream = null
+    let username = '@user.FullName'
+
+
+
+    const connection1 = new signalR.HubConnectionBuilder().withUrl("/meeting").build();
+
+
+    const myPeer = new Peer()
+
+    myPeer.on('open', id => {
+        userId = id;
+
+        const startSignalR = async () => {
+            await connection1.start();
+            await connection1.invoke("JoinRoom", ROOM_ID, userId)
+        }
+        startSignalR();
+    })
+
+    connection1.on('user-connected', id => {
+        if (userId === id) return;
+        console.log(`User connected : ${id}`)
+        ConnectNewUser(id, localStream)
+    })
+
+    myPeer.on('call', call => {
+        call.answer(localStream)
+
+        const userVideo = document.createElement('video')
+        call.on('stream', userVideoStream => {
+            addVideoStream(userVideo, userVideoStream)
+        })
+    })
+
+
+    const addVideoStream = (video, stream) => {
+        video.srcObject = stream;
+        video.addEventListener('loadedmetadata', () => {
+            video.play();
+        })
+        spinner.remove();
+        videoGrid.appendChild(video);
+    }
+
+    const ConnectNewUser = (userId, localStream) => {
+        const userVideo = document.createElement('video')
+        const call = myPeer.call(userId, localStream)
+
+        call.on('stream', userVideoStream => {
+            addVideoStream(userVideo, userVideoStream)
+        })
+
+        call.on('close', () => {
+            userVideo.remove()
+        })
+    }
+
+    connection1.on("ReceiveMessage", function (user, message) {
+        var li = document.createElement("li");
+        document.getElementById("messagesList").appendChild(li);
+        li.textContent = `${user}: ${message}`;
+    });
+
+
+    document.getElementById("sendButton").addEventListener("click", function (event) {
+        var message = document.getElementById("messageInput").value;
+        connection1.invoke("SendMessage", username, message).catch(function (err) {
+            return console.error(err.toString());
+        });
+        document.getElementById("messageInput").value = '';
+        event.preventDefault();
+    });
+</script>

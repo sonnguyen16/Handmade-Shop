@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using HandmadeShop.Data.Base;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HandmadeShop.Models
 {
-    public class Address
+    public class Address:IEntityBase
     {
         public int ID { get; set; }
         public string AccountID { get; set; }
@@ -13,6 +14,7 @@ namespace HandmadeShop.Models
         public string City { get; set; }
         public string Ward { get; set; }
         public string Street { get; set; }
-        
+        public string Phone { get; set; }
+
     }
 }

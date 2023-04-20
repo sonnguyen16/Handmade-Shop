@@ -15,5 +15,6 @@ namespace HandmadeShop.Models.ViewModel
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
     }
 }

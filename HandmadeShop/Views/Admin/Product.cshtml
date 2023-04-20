@@ -1,0 +1,421 @@
+﻿@using HandmadeShop.Models;
+@{
+    Layout = null;
+    var user = ViewBag.user as ApplicationUser;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href='~/bootstrap-5.3.0-alpha2-dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href="~/datatable/datatables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/fontawesome-free-6.4.0-web/css/all.css" rel="stylesheet" />
+    <link href="~/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" />
+    <link href="~/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="~/toastr/toastr.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/admin/style.css">
+    <title>AdminSite</title>
+    <style>
+        video {
+            border-radius: 8px;
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="#" class="brand"><i class='bx bxs-smile icon'></i> AdminSite</a>
+        <ul class="side-menu">
+            <li><a asp-action="Dashboard"><i class='bx bxs-dashboard icon'></i> Dashboard</a></li>
+            <li class="divider" data-text="main">Main</li>
+            <li><a class="active" asp-action="Product"><i class='bx bxs-gift icon'></i> Products</a></li>
+            <li><a href="#"><i class='bx bxs-category icon'></i> Categories</a></li>
+            <li><a href="#"><i class='bx bxs-offer icon'></i> Orders</a></li>
+            <li><a href="#"><i class='bx bxs-user icon'></i> Users</a></li>
+        </ul>
+    </section>
+    <!-- SIDEBAR -->
+    <!-- NAVBAR -->
+    <section id="content">
+        <!-- NAVBAR -->
+        <nav>
+            <i class='bx bx-menu toggle-sidebar'></i>
+            <form action="#">
+                <div class="form-group">
+                    <input type="text" placeholder="Search...">
+                    <i class='bx bx-search icon'></i>
+                </div>
+            </form>
+            <span class="divider"></span>
+            <div class="profile">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+                <ul class="profile-link">
+                    <li><a href="#"><i class='bx bxs-user-circle icon'></i> Profile</a></li>
+                    <li><a href="#"><i class='bx bxs-cog'></i> Settings</a></li>
+                    <li><a href="#"><i class='bx bxs-log-out-circle'></i> Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- NAVBAR -->
+        <!-- MAIN -->
+        <main>
+            <ul class="breadcrumbs ps-0">
+                <li><a href="#">Home</a></li>
+                <li class="divider">/</li>
+                <li><a href="#" class="active">Product</a></li>
+            </ul>
+
+            <button id="new" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">New Product</button>
+            <div class="data">
+                <div class="content-data container" style="height: 72vh;">
+                    <div class="table-responsive h-100">
+                        <table class="table table-bordered">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- MAIN -->
+    </section>
+
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Add New Product</h5>
+                    <button type="button" class="btn close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="productForm" onsubmit="return false">
+                        <div class="form-group mb-2">
+                            <label for="name">Product Name</label>
+                            <input name="name" type="text" class="form-control" id="name" placeholder="Enter product name">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="price">Price</label>
+                            <input name="price" type="number" class="form-control" id="price" placeholder="Enter price">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="seller">Seller</label>
+                            <input name="seller" type="text" class="form-control" id="seller" placeholder="Enter seller name">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="description">Description</label>
+                            <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="categoryid">Category</label>
+                            <select name="categoryid" class="form-control" id="categoryid">
+                                <option value="1">Decor</option>
+                                <option value="2">Đồ chơi</option>
+                                <option value="3">Trang phục</option>
+                                <option value="4">Trang sức</option>
+                                <option value="5">Khác</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="material">Material</label>
+                            <input name="material" type="text" class="form-control" id="material" placeholder="Enter material">
+                        </div>
+                        <div class="form-group mb-2">
+                            <!-- Add new file input field -->
+                            <label for="images">Product Images</label>
+                            <input type="file" class="form-control" id="images" name="images[]" multiple>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="submit" type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+<script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+<script src="~/bootstrap-5.3.0-alpha2-dist/js/bootstrap.js"></script>
+<script src="~/assets/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="~/datatable/jquery.datatables.min.js"></script>
+<script src="~/assets/js/plugins/jquery.validate.min.js"></script>
+<script src="~/assets/js/plugins/additional-methods.min.js"></script>
+<script src="~/datatable/datatables.bootstrap5.min.js"></script>
+<script src="~/fontawesome-free-6.4.0-web/js/all.js"></script>
+<script src="~/fontawesome-free-6.4.0-web/js/all.min.js"></script>
+<script src="~/toastr/toastr.min.js"></script>
+<script>
+    loadData();
+
+    function loadData() {
+        $('.table').DataTable({
+            processing: true,
+            paging: true,
+            lengthChange: true,
+            searching: true,
+            ordering: true,
+            info: true,
+            responsive: true,
+            autoWidth: false,
+            ajax: {
+                url: '/Admin/GetProduct',
+                type: "GET",
+            }
+            ,
+            order: [0, "desc"],
+            columns: [
+                {
+                    title: "Tên sản phẩm ",
+                    data: "name",
+
+                },
+                {
+                    title: "Giá",
+                    data: "price",
+
+                },
+                {
+                    title: "Người bán",
+                    data: "seller",
+
+                },
+                {
+                    title: "Mô tả",
+                    data: "description",
+
+                },
+                {
+                    title: "Nguyên liệu",
+                    data: "material",
+
+                },
+                {
+                    title: "Loại sản phẩm",
+                    data: "categoryID",
+
+                }, {
+                    title: "Thao tác",
+                    data: "id",
+                    name: "id",
+                    className: "text-center",
+                    bSortable: false,
+                    render: function (data, type, row, meta) {
+                        return renderAction([{
+                            class: 'btn btn-sm btn-primary badge',
+                            value: row.id,
+                            title: 'update',
+                            icon: 'fa fa-edit',
+                        },
+                        {
+                            class: 'btn btn-sm btn-primary badge',
+                            value: row.id,
+                            title: 'delete',
+                            icon: 'fa fa-trash',
+                        }]);
+                    }
+                },
+            ]
+        })
+    }
+
+    function renderAction(data) {
+        var htmlButton = `<div class="btn-group align-top">`;
+        $.each(data, function (index, item) {
+
+            htmlButton += '<button button="dropdown-item" data-id="' +
+                item.value + '" class="' +
+                item.class + '" id="' +
+                item.title + '">' +
+                '<i class="' +
+                item.icon + '"></i>' +
+                "</button>";
+        });
+        htmlButton += "</div>";
+        return htmlButton;
+    }
+
+
+    $('#productForm').validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 5
+            },
+            price: {
+                required: true,
+                min: 0
+            },
+            seller: {
+                required: true
+            },
+            description: {
+                required: true
+            },
+            categoryid: {
+                required: true
+            },
+            material: {
+                required: true
+            }
+        },
+        messages: {
+            name: {
+                required: "Product name is required.",
+                minlength: "Product name must be at least 5 characters long."
+            },
+            price: {
+                required: "Price is required.",
+                min: "Price must be a positive number."
+            },
+            seller: {
+                required: "Seller name is required."
+            },
+            description: {
+                required: "Description is required."
+            },
+            categoryid: {
+                required: "Category is required."
+            },
+            material: {
+                required: "Material is required."
+            }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        },
+        submitHandler: function (e) {
+            let product;
+            if ($('#submit').attr('data-id') === undefined){
+                product = {
+                    name: $("#name").val(),
+                    price: $("#price").val(),
+                    seller: $("#seller").val(),
+                    categoryid: $("#categoryid").val(),
+                    material: $("#material").val(),
+                    description: $("#description").val(),
+                }
+            }else{
+                product = {
+                    id: $('#submit').attr('data-id'),
+                    name: $("#name").val(),
+                    price: $("#price").val(),
+                    seller: $("#seller").val(),
+                    categoryid: $("#categoryid").val(),
+                    material: $("#material").val(),
+                    description: $("#description").val(),
+                }
+            }
+
+            console.log(product)
+           
+
+            $.ajax({
+                type: 'POST',
+                url: $('#submit').attr('data-url'),
+                data: JSON.stringify(product),
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    if (response) {
+                        toastr.success('Thành công')
+                        $('.modal').modal('hide')
+                        $('.table').DataTable().destroy()
+                        loadData()
+                        $("#name").val('')
+                        $("#price").val('')
+                        $("#seller").val('')
+                        $("#categoryid").val(1)
+                        $("#material").val('')
+                        $("#description").val('')
+                    } else {
+                        toastr.error('Có lỗi xảy ra')
+                    }
+
+                }, error: function (jqXHR, textStatus, errorThrown) {
+                    console.log("Error: ", textStatus, errorThrown);
+                }
+
+
+            });
+
+        }
+    });
+
+    $('#new').on('click', function () {
+        $('#submit').attr('data-id', null)
+        $("#name").val('')
+        $("#price").val('')
+        $("#seller").val('')
+        $("#categoryid").val(1)
+        $("#material").val('')
+        $("#description").val('')
+        $('#submit').attr('data-url', '/admin/addproduct')
+    })
+
+    $(document).on('click', '#update', function () {
+        $.ajax({
+            type: 'GET',
+            url: '/admin/getaproduct/' + $(this).data('id'),
+            success: function (response) {
+                $('#submit').attr('data-id', response.id)
+                $('.modal').modal('show')
+                $("#name").val(response.name)
+                $("#price").val(response.price)
+                $("#seller").val(response.seller)
+                $("#categoryid").val(response.categoryID)
+                $("#material").val(response.material)
+                $("#description").val(response.description)
+                $('#submit').attr('data-url', '/admin/updateproduct/'+response.id);
+
+
+            }, error: function () {
+                toastr.error('Có lỗi xảy ra')
+            }
+
+        });
+    })
+
+    $(document).on('click', '#delete', function () {
+        if (confirm('Bạn có chắc chắn muốn xóa?')) {
+            $.ajax({
+                type: 'POST',
+                url: '/admin/removeproduct/' + $(this).data('id'),
+                success: function (response) {
+                    if (response) {
+                        $('.table').DataTable().destroy();
+                        toastr.success('Xóa thành công');
+                        loadData();
+                    } else {
+                        toastr.error('Có lỗi xảy ra');
+                    }
+
+
+                }, error: function () {
+                    toastr.error('Có lỗi xảy ra')
+                }
+
+            });
+        }
+    })
+
+
+
+</script>
+<script src="~/admin/script.js"></script>
+
+</html>
