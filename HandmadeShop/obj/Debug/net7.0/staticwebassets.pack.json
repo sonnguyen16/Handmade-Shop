@@ -117,6 +117,22 @@
       "PackagePath": "staticwebassets\\Images\\handmade8-4.jpg"
     },
     {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\Images\\khang.jpg",
+      "PackagePath": "staticwebassets\\Images\\khang.jpg"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\Images\\khanh.jpg",
+      "PackagePath": "staticwebassets\\Images\\khanh.jpg"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\Images\\khoi.jpg",
+      "PackagePath": "staticwebassets\\Images\\khoi.jpg"
+    },
+    {
+      "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\Images\\thinh.jpg",
+      "PackagePath": "staticwebassets\\Images\\thinh.jpg"
+    },
+    {
       "Id": "C:\\Workspace\\Web 2\\Handmade-Shop\\HandmadeShop\\wwwroot\\Images\\tien.jpg",
       "PackagePath": "staticwebassets\\Images\\tien.jpg"
     },
